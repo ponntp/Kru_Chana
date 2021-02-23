@@ -29,7 +29,7 @@ export const AuthProvider = ({children}) => {
                         console.log(e)
                     }
                 },
-                register: async (email, password) => {
+                register: async (email, password, name, lastname) => {
                     try{
                         await auth().createUserWithEmailAndPassword(email, password).catch(error => {
                             if (error.code === 'auth/email-already-in-use') {
@@ -39,6 +39,7 @@ export const AuthProvider = ({children}) => {
                               if (error.code === 'auth/invalid-email') {
                                 Alert.alert('That email address is invalid!');
                               }
+
                         })
 
                     } catch(e) {

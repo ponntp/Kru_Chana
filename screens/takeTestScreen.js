@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, StyleSheet, Text, Button} from 'react-native';
-import {FilledButton} from '../components/FilledButton';
+import {Alert} from 'react-native';
 
 let array = [["How are you?" , "What is ur name?","try"], [1, 2, 4], [["a", "b", "c", "d"] ,["1","2","3","4"], ["a", "b", "c", "d"]]];
 let number = 0;
@@ -104,7 +104,7 @@ export default class StudentTakeTest extends React.Component {
         });
         score = rawScore.length;
         isFinishTest = true; // switch page here ****************************************************************************** alert score
-        alert(score)
+        Alert.alert('Your Score: '+score.toString()+' Points')
         navigate('Home')
     } 
 }
