@@ -1,10 +1,12 @@
 import * as React from 'react';
 import {useState, useContext} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {Heading} from '../components/Heading';
 import {Input} from '../components/Input';
 import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
+import CheckBox from '@react-native-community/checkbox';
+
 import firestore from '@react-native-firebase/firestore';
 
 export default function loginScreen({navigation}) {
@@ -12,6 +14,9 @@ export default function loginScreen({navigation}) {
   const [password, setPassword] = useState();
   const [name, setName] = useState();
   const [lastname, setLastname] = useState();
+
+  const [teacher, setTeacher] = useState(false)
+  const [student, setSudent] = useState(false)
 
   const {register} = useContext(AuthContext);
 
@@ -22,6 +27,8 @@ export default function loginScreen({navigation}) {
       Name: name,
       Lastname: lastname,
       Email: email,
+      Teacher: teacher,
+      Student: student,
       Score: 0
     })};
     
@@ -34,7 +41,6 @@ export default function loginScreen({navigation}) {
         labelValue={name}
         onChangeText={(userName) => setName(userName)}
         placeholder="Name"
-        autoCapitalize={true}
         autoCorrect={false}
       />
       <Input
@@ -42,7 +48,6 @@ export default function loginScreen({navigation}) {
         labelValue={lastname}
         onChangeText={(userLastname) => setLastname(userLastname)}
         placeholder="Lastname"
-        autoCapitalize={true}
         autoCorrect={false}
       />
       <Input
@@ -60,6 +65,18 @@ export default function loginScreen({navigation}) {
         placeholderText="Password"
         secureTextEntry={true}
       />
+      <CheckBox
+        disabled={false}
+        value={teacher}
+        onValueChange={(isTeacher) => setTeacher(isTeacher)}
+      />
+      <Text>Teacher</Text>
+      <CheckBox
+        disabled={false}
+        value={student}
+        onValueChange={(isStudent) => setStudent(isStudent)}
+      />
+      <Text>Student</Text>
       <FilledButton
         title={'Sign Up'}
         style={styles.loginButton}
