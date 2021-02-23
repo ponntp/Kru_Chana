@@ -16,7 +16,7 @@ export default function loginScreen({navigation}) {
   const [lastname, setLastname] = useState();
 
   const [teacher, setTeacher] = useState(false)
-  const [student, setSudent] = useState(false)
+  const [student, setStudent] = useState(false)
 
   const {register} = useContext(AuthContext);
 
