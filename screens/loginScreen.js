@@ -5,9 +5,9 @@ import {Heading} from '../components/Heading';
 import {Input} from '../components/Input';
 import {FilledButton} from '../components/FilledButton';
 import {TextButton} from '../components/TextButton';
-import { AuthContext } from '../navigaiton/AuthProvider';
+import {AuthContext} from '../navigaiton/AuthProvider';
 
-export default function loginScreen ({navigation}) {
+export default function loginScreen({navigation}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -20,26 +20,31 @@ export default function loginScreen ({navigation}) {
         style={styles.input}
         labelValue={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholder='Email'
+        placeholder="Email"
         keyboardType={'email-address'}
-        autoCapitalize='none'
-        autoCorrect = {false}
+        autoCapitalize="none"
+        autoCorrect={false}
       />
-      <Input     
+      <Input
         style={styles.input}
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
-        placeholderText='Password'
-        secureTextEntry = {true}
+        placeholderText="Password"
+        secureTextEntry={true}
       />
-      <FilledButton title={'Login'} style={styles.loginButton} onPress={()=>login(email, password)}/>
+      <FilledButton
+        title={'Login'}
+        style={styles.loginButton}
+        onPress={() => login(email, password)}
+      />
       <TextButton
-        title={'Forgot password?'} onPress={()=>navigation.navigate('Register')}
+        title={'Forgot password?'}
+        onPress={() => navigation.navigate('Register')}
       />
       <TextButton
-        title={'don\'t have an account? Create one'} onPress={()=>navigation.navigate('Register')}
+        title={"don't have an account? Create one"}
+        onPress={() => navigation.navigate('Register')}
       />
-
     </View>
   );
 }
@@ -62,7 +67,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    marginBottom: 100
-
-  }
+    marginBottom: 100,
+  },
 });

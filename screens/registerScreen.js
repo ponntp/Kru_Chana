@@ -4,12 +4,11 @@ import {View, StyleSheet} from 'react-native';
 import {Heading} from '../components/Heading';
 import {Input} from '../components/Input';
 import {FilledButton} from '../components/FilledButton';
-import { AuthContext } from '../navigaiton/AuthProvider';
+import {AuthContext} from '../navigaiton/AuthProvider';
 
-export default function loginScreen ({navigation}) {
+export default function loginScreen({navigation}) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
 
   const {register} = useContext(AuthContext);
 
@@ -20,27 +19,23 @@ export default function loginScreen ({navigation}) {
         style={styles.input}
         labelValue={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholder='Email'
+        placeholder="Email"
         keyboardType={'email-address'}
-        autoCapitalize='none'
-        autoCorrect = {false}
+        autoCapitalize="none"
+        autoCorrect={false}
       />
-      <Input     
+      <Input
         style={styles.input}
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
-        placeholderText='Password'
-        secureTextEntry = {true}
+        placeholderText="Password"
+        secureTextEntry={true}
       />
-      <Input     
-        style={styles.input}
-        labelValue={confirmPassword}
-        onChangeText={(userPassword) => setPassword(userPassword)}
-        placeholderText='Confirm Password'
-        secureTextEntry = {true}
+      <FilledButton
+        title={'Sign Up'}
+        style={styles.loginButton}
+        onPress={() => register(email, password)}
       />
-      <FilledButton title={'Sign Up'} style={styles.loginButton} onPress={()=> register(email, password)}/>
-
     </View>
   );
 }
@@ -63,7 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    marginBottom: 100
-
-  }
+    marginBottom: 100,
+  },
 });
