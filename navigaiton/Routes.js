@@ -8,7 +8,6 @@ import AuthStack from './AuthStack'
 import AppCheck from './AppCheck'
 
 
-
 const Routes = () => {
 
     const {user, setUser} = useContext(AuthContext);

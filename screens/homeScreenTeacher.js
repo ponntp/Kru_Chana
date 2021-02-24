@@ -66,7 +66,7 @@ export default function homeScreen({navigation}) {
       <FilledButton
         title={'Create Exam'}
         style={styles.loginButton}
-        onPress={() => navigation.navigate('MakeQuestion')}
+        onPress={() => navigation.navigate('MakeSubject')}
       />
       <FilledButton
         title={'Show Data'}
