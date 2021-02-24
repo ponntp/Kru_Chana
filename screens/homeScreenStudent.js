@@ -1,97 +1,49 @@
 import * as React from 'react';
-import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {useContext, Component} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
-import { AuthContext } from '../navigaiton/AuthProvider';
+import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import { Input, ListItem } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+
+export default function homeScreenStudent({navigation}) {
+  const {user, logout} = useContext(AuthContext);
 
 
-class ShowData extends Component { 
-  constructor() {
-    super();
-
-    this.fireStoreData = firestore().collection("subject");
-    this.state = {
-      userArr: []
-    }
-  }
-
-
-
-  componentDidMount() {
-    this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
-  }
-
-  componentWillUnmount(){
-    this.unsubscribe();
-  }
-  getCollection = (querySnapshot) => {
-    const userArr = [];
-    querySnapshot.forEach((res) => {
-      const {name} = res.data();
-      userArr.push({
-        key: res.id,
-        res,
-        name
-      })
-    })
-    this.setState({
-      userArr
-    })
-  }
-  render(){
-    return(
-      <View>
-        <Text> Subject </Text>
-        {
-          this.state.userArr.map((item, i) => {
-            return (
-              
-                <ListItem
-                  key={i}
-                  bottomDivider>
-                    <ListItem.Content>
-                      <ListItem.Title>{item.name}</ListItem.Title>
-                      <Button title={item.name} 
-                      onPress={() => {this.props.navigation.navigate('nameExam')}}/>
-                    </ListItem.Content>
-
-                </ListItem>
-            );
-          })
-        }
-      </View>
-    )
-  }
-
+  return (
+    <View style={styles.container}>
+      <Text>Welcome Student {user.email}</Text>
+      <FilledButton
+        title={'TakeTest'}
+        style={styles.loginButton}
+        onPress={() => navigation.navigate('Taketest')}
+      />
+      <FilledButton
+        title={'Logout'}
+        style={styles.loginButton}
+        onPress={() => logout()}
+      />
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    title: {
-      marginBottom: 20,
-      textAlign: 'center',
-    },
-    input: {
-      marginVertical: 10,
-      marginBottom: 15,
-    },
-    loginButton: {
-      marginVertical: 32,
-    },
-  
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-      marginBottom: 100
-  
-    }
-  });
+  title: {
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    marginVertical: 10,
+    marginBottom: 15,
+  },
+  loginButton: {
+    marginVertical: 32,
+  },
 
-
-  export default ShowData;
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    marginBottom: 100,
+  },
+});
