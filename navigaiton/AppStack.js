@@ -13,6 +13,7 @@ function AppStack() {
   return (
     <Stack.Navigator initialRouteName="HomeTeacher">
       <Stack.Screen name="HomeTeacher" component={HomeTeacher} />
+      <Stack.Screen name="MakeSubject" component={MakeSubject} />
       <Stack.Screen name="MakeQuestion" component={MakeQuestion} />
 
     </Stack.Navigator>
