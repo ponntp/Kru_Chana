@@ -6,6 +6,9 @@ import {AuthContext} from './AuthProvider'
 
 import AuthStack from './AuthStack'
 import AppStack from './AppStack'
+import AppStudent from './AppStudent';
+
+let teacher = true;
 
 const Routes = () => {
 
@@ -26,7 +29,21 @@ const Routes = () => {
 
     return (
         <NavigationContainer>
-            {user? <AppStack/> : <AuthStack />}
+            {
+                (() => {
+                    if(user && !teacher){
+                        return <AppStudent/>
+
+                    } else if(user && teacher) {
+                        return <AppStack/>
+                    }
+
+                    else {
+                        return <AuthStack />
+                    }
+                        
+                })()
+            }
         </NavigationContainer>
     )
 }

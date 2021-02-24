@@ -11,9 +11,14 @@ export default function homeScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text>Welcome {user.email}</Text>
+      <Text>Welcome Teacher {user.email}</Text>
       <FilledButton
-        title={'TakeTest'}
+        title={'Create Exam'}
+        style={styles.loginButton}
+        onPress={() => navigation.navigate('Taketest')}
+      />
+      <FilledButton
+        title={'Student Score'}
         style={styles.loginButton}
         onPress={() => navigation.navigate('Taketest')}
       />

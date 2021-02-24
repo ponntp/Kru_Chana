@@ -2,17 +2,15 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import HomeStudent from '../screens/homeScreen';
-import TakeTest from '../screens/takeTestScreen'
+import HomeStudent from '../screens/homeScreenStudent';
 
 
 const Stack = createStackNavigator();
 
 function AppStudent() {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="HomeStudent" component={Home} />
-      <Stack.Screen name="TakeTest" component={TakeTest} />
+    <Stack.Navigator initialRouteName="HomeStudent">
+      <Stack.Screen name="HomeStudent" component={HomeStudent} />
 
     </Stack.Navigator>
   );

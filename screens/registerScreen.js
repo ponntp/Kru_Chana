@@ -28,7 +28,6 @@ export default function loginScreen({navigation}) {
       Lastname: lastname,
       Email: email,
       Teacher: teacher,
-      Student: student,
       Score: 0
     })};
     
@@ -70,13 +69,7 @@ export default function loginScreen({navigation}) {
         value={teacher}
         onValueChange={(isTeacher) => setTeacher(isTeacher)}
       />
-      <Text>Teacher</Text>
-      <CheckBox
-        disabled={false}
-        value={student}
-        onValueChange={(isStudent) => setStudent(isStudent)}
-      />
-      <Text>Student</Text>
+      <Text>Teacher (Check only you are teacher. If you're student, Please don't check this box.)</Text>
       <FilledButton
         title={'Sign Up'}
         style={styles.loginButton}
