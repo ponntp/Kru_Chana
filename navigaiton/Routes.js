@@ -8,7 +8,7 @@ import AuthStack from './AuthStack'
 import AppStack from './AppStack'
 import AppStudent from './AppStudent';
 
-let teacher = true;
+let teacher = false;
 
 const Routes = () => {
 

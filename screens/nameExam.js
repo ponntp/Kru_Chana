@@ -5,21 +5,16 @@ import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
 
 class ShowData extends Component { 
   constructor() {
     super();
 
-    this.fireStoreData = firestore().collection("subject");
+    this.fireStoreData = firestore().collection("Users");
     this.state = {
       userArr: []
     }
   }
-
-
 
   componentDidMount() {
     this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
@@ -31,11 +26,12 @@ class ShowData extends Component {
   getCollection = (querySnapshot) => {
     const userArr = [];
     querySnapshot.forEach((res) => {
-      const {name} = res.data();
+      const {Name, Score} = res.data();
       userArr.push({
         key: res.id,
         res,
-        name
+        Name,
+        Score
       })
     })
     this.setState({
@@ -45,18 +41,16 @@ class ShowData extends Component {
   render(){
     return(
       <View>
-        <Text> Subject </Text>
+        <Text> Hi Test pull data </Text>
         {
           this.state.userArr.map((item, i) => {
             return (
-              
                 <ListItem
                   key={i}
                   bottomDivider>
                     <ListItem.Content>
-                      <ListItem.Title>{item.name}</ListItem.Title>
-                      <Button title={item.name} 
-                      onPress={() => {this.props.navigation.navigate('nameExam')}}/>
+                      <ListItem.Title>{item.Name}</ListItem.Title>
+                      <Button title={item.Name}/>
                     </ListItem.Content>
 
                 </ListItem>

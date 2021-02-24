@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeTeacher from '../screens/homeScreenTeacher';
 import MakeQuestion from '../screens/makeQuestionScreen';
 import MakeSubject from '../screens/makeSubjectScreen';
-
+import nameExam from '../screens/nameExam';
 
 const Stack = createStackNavigator();
 
@@ -16,7 +16,7 @@ function AppStack() {
       <Stack.Screen name="HomeTeacher" component={HomeTeacher} />
       <Stack.Screen name="MakeSubject" component={MakeSubject} />
       <Stack.Screen name="MakeQuestion" component={MakeQuestion} />
-
+      <Stack.Screen name="nameExam" component={nameExam}/>
     </Stack.Navigator>
   );
 }
