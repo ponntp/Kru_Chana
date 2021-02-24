@@ -5,16 +5,14 @@ import auth from '@react-native-firebase/auth'
 import {AuthContext} from './AuthProvider'
 
 import AuthStack from './AuthStack'
-import AppStack from './AppStack'
-import AppStudent from './AppStudent';
+import AppCheck from './AppCheck'
 
-let teacher = true;
+
 
 const Routes = () => {
 
     const {user, setUser} = useContext(AuthContext);
     const [initializing, setInitializing] = useState(true);
-
     const onAuthStateChanged = (user) => {
         setUser(user);
         if(initializing) setInitializing(false);
@@ -26,18 +24,15 @@ const Routes = () => {
     }, []);
 
     if(initializing) return null;
-
     return (
         <NavigationContainer>
             {
                 (() => {
-                    if(user && !teacher){
-                        return <AppStudent/>
+                    
+                    if(user){
+                        return <AppCheck/>
 
-                    } else if(user && teacher) {
-                        return <AppStack/>
                     }
-
                     else {
                         return <AuthStack />
                     }

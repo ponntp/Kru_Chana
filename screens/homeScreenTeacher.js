@@ -1,12 +1,63 @@
 import * as React from 'react';
-import {useContext, Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {useContext, useState, useEffect} from 'react';
+import {View, StyleSheet, Text, FlatList} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
+const list = [];
+  const loopdata = (user) => {
+    list.map(each => {
+      console.log('each email: ', each.Email)
+      console.log('user email: ', user.email)
+      console.log('each teacher: ', each.Teacher)
+      if(each.Email == user.email && each.Teacher) { 
+        alert("You are teacher")
+      }
+    })};
+
 
 export default function homeScreen({navigation}) {
   const {user, logout} = useContext(AuthContext);
+  const [Email, setEmail] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+
+
+  
+
+  useEffect(() => {
+    const fetchData = async() => {
+      try {
+    
+        await firestore()
+        .collection('Users')
+        .get()
+        .then((querySnapshot) => {
+          // console.log('Total Users: ',querySnapshot.size)
+          querySnapshot.forEach(doc => {
+            const {Email, Teacher} = doc.data();
+            list.push({
+              id: doc.id,
+              Email,
+              Teacher
+            }      
+            );
+          })
+        })
+
+        setEmail(list);
+        if(loading) {
+          setLoading(false);
+        }
+        
+      } catch (e) {
+          console.log(e)
+      }
+    }
+    
+    fetchData();
+  }, [])
+
 
 
   return (
@@ -16,6 +67,11 @@ export default function homeScreen({navigation}) {
         title={'Create Exam'}
         style={styles.loginButton}
         onPress={() => navigation.navigate('MakeQuestion')}
+      />
+      <FilledButton
+        title={'Show Data'}
+        style={styles.loginButton}
+        onPress={() => loopdata(user)}
       />
       <FilledButton
         title={'Student Score'}

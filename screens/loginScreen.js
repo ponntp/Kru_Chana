@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useContext} from 'react';
+import {useContext, useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Heading} from '../components/Heading';
 import {Input} from '../components/Input';

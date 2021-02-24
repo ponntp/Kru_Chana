@@ -17,13 +17,12 @@ export default function loginScreen({navigation}) {
 
   const [teacher, setTeacher] = useState(false);
 
-  const {user,register} = useContext(AuthContext);
+  const {register} = useContext(AuthContext);
 
   const usersCollectionRef = firestore().collection('Users');
   
   const addusers = () => {
     usersCollectionRef.add({
-      uid: user.uid,
       Name: name,
       Lastname: lastname,
       Email: email,
