@@ -12,8 +12,7 @@ class addData extends Component {
 
   constructor() {
     super();
-   const a = "poom";
-    this.usersCollectionRef = firestore().collection(a);
+    this.usersCollectionRef = firestore().collection('k');
     this.state = {
       question: "",
       choice1: "",

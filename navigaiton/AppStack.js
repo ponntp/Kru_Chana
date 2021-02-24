@@ -4,7 +4,8 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeTeacher from '../screens/homeScreenTeacher';
-import MakeQuestion from '../screens/makeQuestionScreen'
+import MakeQuestion from '../screens/makeQuestionScreen';
+import MakeSubject from '../screens/makeSubjectScreen';
 
 
 const Stack = createStackNavigator();
