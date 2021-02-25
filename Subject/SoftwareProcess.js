@@ -12,15 +12,13 @@ class addData extends Component {
 
   constructor() {
     super();
-    this.usersCollectionRef = firestore().collection('SF210').doc('Subject').collection('Exam')
-    
+    this.usersCollectionRef = firestore().collection('softWareProcess');
     this.state = {
       question: "",
       choice1: "",
       choice2: "",
       choice3: "",
-      choice4:"",
-      ans: ""
+      choice4:""
     }
 
 }
@@ -32,23 +30,19 @@ class addData extends Component {
 }
 
  storeUser() {
-  
-      
-  this.usersCollectionRef.add({
+        this.usersCollectionRef.add({
           question: this.state.question,
           choice1: this.state.choice1,
           choice2: this.state.choice2,
           choice3: this.state.choice3,
-          choice4: this.state.choice4,
-          ans: this.state.ans
+          choice4: this.state.choice4
         }).then((res) => {
             this.setState({
                 question: '',
                 choice1: '',
                 choice2: '',
                 choice3: '',
-                choice4: '',
-                ans:''
+                choice4: ''
             })
         })
         .catch((err) => {
@@ -58,7 +52,6 @@ class addData extends Component {
             })
         })
     }
-  
     render (){
       return (
         <ScrollView>
@@ -101,18 +94,9 @@ class addData extends Component {
      value={this.state.choice4}
      onChangeText={(val) => this.inputValueUpdate(val, 'choice4')}
     />
-
-    
-    <Input
-     placeholder="Answer"
-     leftIcon={{ type: 'font-awesome', name: 'caret-right' }}
-     style={styles}
-     value={this.state.ans}
-     onChangeText={(val) => this.inputValueUpdate(val, 'ans')}
-    />
     
               <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />
-               
+              <FilledButton title={'Logout'} style={styles.loginButton} onPress={()=> logout()} />      
            </View>
            </ScrollView>
       )

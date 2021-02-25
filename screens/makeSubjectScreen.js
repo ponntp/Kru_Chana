@@ -27,31 +27,31 @@ class addSubject extends Component {
           <View style={styles.container}>
             
             <FilledButton 
-                title='SUBJECT 1'
+                title='Math'
                 style={styles.loginButton} 
                 onPress={() => this.props.navigation.navigate('MakeQuestion')}
                 // onPress={editSubject}
             />
             <FilledButton 
-                title='SUBJECT 2'
+                title='English'
                 style={styles.loginButton} 
                 onPress={() => this.props.navigation.navigate('MakeQuestion')}
                 // onPress={editSubject}
             />
             <FilledButton 
-                title='SUBJECT 3'
+                title='Science'
                 style={styles.loginButton} 
                 onPress={() => this.props.navigation.navigate('MakeQuestion')}
                 // onPress={editSubject}
             />
             <FilledButton 
-                title='SUBJECT 4'
+                title='Software Process'
                 style={styles.loginButton} 
                 onPress={() => this.props.navigation.navigate('MakeQuestion')}
                 // onPress={editSubject}
             />
             <FilledButton 
-                title='SUBJECT 5'
+                title='Code'
                 style={styles.loginButton} 
                 onPress={() => this.props.navigation.navigate('MakeQuestion')}
                 // onPress={editSubject}

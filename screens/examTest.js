@@ -1,26 +1,60 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Alert } from 'react-native';
+import {View, StyleSheet, Text, Button} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import { Input, ListItem, Button } from 'react-native-elements';
+import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+
 
 let arrayDictStudents = [];
 
-class examTest extends React.Component {
+
+function checkID (examName , score){ // ********** Check if exam score is valid (not null)
+  if (score != null){
+    return "\t\t" + examName + "\t\t"+ score + "\n"
+  } 
+  return ""
+}
+
+function countExam (eachStudentDict){
+  let temp = "";
+  let keys = Object.keys(eachStudentDict);
+  keys.splice(0,1);   // remove the key ("name")
+
+  console.log(keys);
+  for (var i = 0; i < keys.length/2 ; i++){
+    temp += checkID(eachStudentDict[keys[i*2]] , eachStudentDict[keys[i*2+1]]) // cradit Dome
+  }
+  
+  return temp;
+}
+
+Object.size = function(obj) {   // ********** count element in dict (student : arrayDictStudents)
+  var size = 0,
+    key;
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) size++;
+  }
+  return size;
+}
+
+class StudentTakeTest extends React.Component {
   constructor(props) {
     super(props);
-    this.fireStoreData = firestore().collection("question1");
+    this.fireStoreData = firestore().collection("SF210").doc('Subject').collection('Exam');
     this.state = {
       students : arrayDictStudents,
       userArr: []
     }
   }
+
+
   componentDidMount() {
     this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
   }
+
   componentWillUnmount(){
     this.unsubscribe();
   }
@@ -60,15 +94,28 @@ class examTest extends React.Component {
 
       })
       console.log(arrayDictStudents);
-
-
     }
 
     return (
-      <Text>
-        Eiei
-      </Text>
-      
+      <ScrollView>
+      <View>
+        {this.state.students.map(eachStudent => (
+            <>
+          <Text>
+             {eachStudent.question}
+          </Text> 
+          <Button title={eachStudent.choice1}/>
+          <Button title={eachStudent.choice2}/>
+          <Button title={eachStudent.choice3}/>
+          <Button title={eachStudent.choice4}/>
+          <Button title={eachStudent.ans}/>
+          </>
+          
+          
+        )
+        )}
+      </View>
+    </ScrollView>
     );
   }
 }
@@ -95,6 +142,7 @@ const styles = StyleSheet.create({
       marginBottom: 100
   
     }
-});
+  });
 
-export default examTest;
+
+  export default StudentTakeTest;
