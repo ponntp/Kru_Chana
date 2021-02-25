@@ -14,9 +14,11 @@ class exam extends Component {
 
     }
 
+
     
 
     render (){
+      
       return (
         <ScrollView>
           <View style={styles.container}>

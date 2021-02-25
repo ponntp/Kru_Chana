@@ -14,8 +14,6 @@ class sub extends Component {
 
     }
 
-    
-
     render (){
       return (
         <ScrollView>
