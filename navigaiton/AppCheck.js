@@ -8,6 +8,8 @@ import firestore from '@react-native-firebase/firestore';
 import HomeTeacher from '../screens/homeScreenTeacher';
 import MakeQuestion from '../screens/makeQuestionScreen';
 import HomeStudent from '../screens/homeScreenStudent';
+import MakeSubject from '../screens/makeSubjectScreen';
+import TakeTest from '../screens/takeTestScreen';
 
 const Stack = createStackNavigator();
 var teacher = null;
@@ -60,9 +62,10 @@ export default function checkRoleScreen() {
   loopdata(user);
 
   return teacher ? (
-    <> 
+    <>
       <Stack.Navigator initialRouteName="HomeTeacher">
         <Stack.Screen name="HomeTeacher" component={HomeTeacher} />
+        <Stack.Screen name="MakeSubject" component={MakeSubject} />
         <Stack.Screen name="MakeQuestion" component={MakeQuestion} />
       </Stack.Navigator>
     </>
@@ -70,6 +73,7 @@ export default function checkRoleScreen() {
     <>
       <Stack.Navigator initialRouteName="HomeStudent">
         <Stack.Screen name="HomeStudent" component={HomeStudent} />
+        <Stack.Screen name="Taketest" component={TakeTest} />
       </Stack.Navigator>
     </>
   );
@@ -96,13 +100,3 @@ const styles = StyleSheet.create({
     marginBottom: 100,
   },
 });
-
-// function AppCheck() {
-//   return (
-//     <Stack.Navigator initialRouteName="Check">
-//       <Stack.Screen name="Check" component={Check} />
-//     </Stack.Navigator>
-//   );
-// }
-
-// export default AppCheck;

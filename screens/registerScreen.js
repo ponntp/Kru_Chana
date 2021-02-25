@@ -20,16 +20,16 @@ export default function loginScreen({navigation}) {
   const {register} = useContext(AuthContext);
 
   const usersCollectionRef = firestore().collection('Users');
-  
+
   const addusers = () => {
     usersCollectionRef.add({
       Name: name,
       Lastname: lastname,
       Email: email,
       Teacher: teacher,
-      Score: 0
-    })};
-    
+      Score: 0,
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -68,11 +68,17 @@ export default function loginScreen({navigation}) {
         value={teacher}
         onValueChange={(isTeacher) => setTeacher(isTeacher)}
       />
-      <Text>Teacher (Check only you are teacher. If you're student, Please don't check this box.)</Text>
+      <Text>
+        Teacher (Check only you are teacher. If you're student, Please don't
+        check this box.)
+      </Text>
       <FilledButton
         title={'Sign Up'}
         style={styles.loginButton}
-        onPress={() => {register(email, password, name, lastname); addusers()}}
+        onPress={() => {
+          register(email, password, name, lastname);
+          addusers();
+        }}
       />
     </View>
   );

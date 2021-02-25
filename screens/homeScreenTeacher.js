@@ -1,10 +1,9 @@
 import * as React from 'react';
-import {useContext, useState, useEffect} from 'react';
-import {View, StyleSheet, Text, FlatList} from 'react-native';
+import {useContext} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-
 
 export default function homeScreen({navigation}) {
   const {user, logout} = useContext(AuthContext);
@@ -17,16 +16,7 @@ export default function homeScreen({navigation}) {
         style={styles.loginButton}
         onPress={() => navigation.navigate('MakeSubject')}
       />
-      <FilledButton
-        title={'Show Data'}
-        style={styles.loginButton}
-        onPress={() => loopdata(user)}
-      />
-      <FilledButton
-        title={'Student Score'}
-        style={styles.loginButton}
-        onPress={() => navigation.navigate('Taketest')}
-      />
+      <FilledButton title={'Student Score'} style={styles.loginButton} />
       <FilledButton
         title={'Logout'}
         style={styles.loginButton}
