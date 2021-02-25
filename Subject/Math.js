@@ -95,8 +95,8 @@ class addData extends Component {
      onChangeText={(val) => this.inputValueUpdate(val, 'choice4')}
     />
     
-              <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />
-              <FilledButton title={'Logout'} style={styles.loginButton} onPress={()=> logout()} />      
+              <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />   
+              <FilledButton title={'Home'} style={styles.loginButton} onPress={() => this.props.navigation.navigate('HomeTeacher')} />   
            </View>
            </ScrollView>
       )

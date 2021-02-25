@@ -13,6 +13,9 @@ import NameExame from '../screens/nameExam';
 import ExamTest from '../screens/examTest';
 import Subject from '../screens/nameSubject';
 
+import LinkToMath from '../NavToExame/LinkToMath';
+import Math from '../Subject/Math';
+
 const Stack = createStackNavigator();
 var teacher = null;
 const list = [];
@@ -68,8 +71,10 @@ export default function checkRoleScreen() {
       <Stack.Navigator initialRouteName="HomeTeacher">
         <Stack.Screen name="HomeTeacher" component={HomeTeacher} />
         <Stack.Screen name="MakeSubject" component={MakeSubject} />
-        <Stack.Screen name="MakeQuestion" component={MakeQuestion} />
+        <Stack.Screen name="MakeQuestion" component={MakeQuestion}/>
         <Stack.Screen name="studentScore" component={studentScore}/>
+        <Stack.Screen name="Make Name Exame" component={LinkToMath}/>
+        <Stack.Screen name="Math" component={Math}/>
 
       </Stack.Navigator>
     </>

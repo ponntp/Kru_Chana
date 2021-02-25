@@ -29,7 +29,7 @@ class addSubject extends Component {
             <FilledButton 
                 title='Math'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('MakeQuestion')}
+                onPress={() => this.props.navigation.navigate('Make Name Exame')}
                 // onPress={editSubject}
             />
             <FilledButton 
