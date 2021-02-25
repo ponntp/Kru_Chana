@@ -6,33 +6,71 @@ import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-class examTest extends Component {
-  
 
-    constructor() {
-        super();
+let arrayDictStudents = [];
 
+class examTest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fireStoreData = firestore().collection("question1");
+    this.state = {
+      students : arrayDictStudents,
+      userArr: []
     }
+  }
+  componentDidMount() {
+    this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
+  }
+  componentWillUnmount(){
+    this.unsubscribe();
+  }
+  getCollection = (querySnapshot) => {
+    const userArr = [];
+    querySnapshot.forEach((res) => {
+      const {ans, choice1, choice2, choice3, choice4, question} = res.data();
+      userArr.push({
+        key: res.id,
+        res,
+        ans,
+        choice1,
+        choice2,
+        choice3,
+        choice4,
+        question
+      })
+    })
+    this.setState({
+      userArr
+    })
+  }
 
+  render() {
     
+    {
+      this.state.userArr.map((item, i) => {
+        arrayDictStudents.push({
+              ans: item.ans,
+              choice1: item.choice1,
+              choice2: item.choice2,
+              choice3: item.choice3,
+              choice4: item.choice4,
+              question: item.question
+            }
+            )
 
-    render (){
-      return (
-        <ScrollView>
-          <View style={styles.container}>
+      })
+      console.log(arrayDictStudents);
 
-            <Text>
-              Hello
-            </Text>
-            
-            
-            <FilledButton title={'Logout'} style={styles.loginButton} onPress={()=> logout()} />   
 
-          </View>
-        </ScrollView>
-      )
     }
 
+    return (
+      <Text>
+        Eiei
+      </Text>
+      
+    );
+  }
 }
 
 
@@ -57,6 +95,6 @@ const styles = StyleSheet.create({
       marginBottom: 100
   
     }
-  });
+});
 
-  export default examTest;
+export default examTest;

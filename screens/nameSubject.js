@@ -7,7 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
-class exam extends Component {
+class sub extends Component {
 
     constructor() {
         super();
@@ -22,17 +22,17 @@ class exam extends Component {
           <View style={styles.container}>
 
             <Text>
-              Exame 1
+              Sub 1
             </Text>
             
             <Button 
                 title='Exame'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('ExameTest')}
+                onPress={() => this.props.navigation.navigate('Name Exame')}
             />
 
             <Text>
-              Exame 2
+              Sub 2
             </Text>
             <Button 
                 title='Exame'
@@ -40,7 +40,15 @@ class exam extends Component {
             />
 
             <Text>
-              Exame 3
+              Sub 3
+            </Text>
+            <Button 
+                title='Exame'
+                style={styles.loginButton} 
+            />
+
+            <Text>
+              Sub 4
             </Text>
             <Button 
                 title='Exame'
@@ -78,4 +86,4 @@ const styles = StyleSheet.create({
     }
   });
 
-  export default exam;
+  export default sub;
