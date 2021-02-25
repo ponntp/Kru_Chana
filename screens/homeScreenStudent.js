@@ -8,14 +8,17 @@ import firestore from '@react-native-firebase/firestore';
 export default function homeScreenStudent({navigation}) {
   const {user, logout} = useContext(AuthContext);
 
+
   return (
     <View style={styles.container}>
       <Text>Welcome Student {user.email}</Text>
+
       <FilledButton
         title={'TakeTest'}
         style={styles.loginButton}
-        onPress={() => navigation.navigate('Taketest')}
+        onPress={() => navigation.navigate('NameExame')}
       />
+
       <FilledButton
         title={'Logout'}
         style={styles.loginButton}

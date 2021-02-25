@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useContext} from 'react';
+import {useContext, Component} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
@@ -7,6 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 
 export default function homeScreen({navigation}) {
   const {user, logout} = useContext(AuthContext);
+
 
   return (
     <View style={styles.container}>
@@ -16,7 +17,11 @@ export default function homeScreen({navigation}) {
         style={styles.loginButton}
         onPress={() => navigation.navigate('MakeSubject')}
       />
-      <FilledButton title={'Student Score'} style={styles.loginButton} />
+      <FilledButton
+        title={'Student Score'}
+        style={styles.loginButton}
+        onPress={() => navigation.navigate('studentScore')}
+      />
       <FilledButton
         title={'Logout'}
         style={styles.loginButton}

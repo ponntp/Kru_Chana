@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useContext, useState, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
 import {AuthContext} from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 
@@ -9,7 +8,9 @@ import HomeTeacher from '../screens/homeScreenTeacher';
 import MakeQuestion from '../screens/makeQuestionScreen';
 import HomeStudent from '../screens/homeScreenStudent';
 import MakeSubject from '../screens/makeSubjectScreen';
-import TakeTest from '../screens/takeTestScreen';
+import studentScore from '../screens/studentScore';
+import NameExame from '../screens/nameExam';
+import ExamTest from '../screens/examTest';
 
 const Stack = createStackNavigator();
 var teacher = null;
@@ -67,36 +68,17 @@ export default function checkRoleScreen() {
         <Stack.Screen name="HomeTeacher" component={HomeTeacher} />
         <Stack.Screen name="MakeSubject" component={MakeSubject} />
         <Stack.Screen name="MakeQuestion" component={MakeQuestion} />
+        <Stack.Screen name="studentScore" component={studentScore}/>
+
       </Stack.Navigator>
     </>
   ) : (
     <>
       <Stack.Navigator initialRouteName="HomeStudent">
         <Stack.Screen name="HomeStudent" component={HomeStudent} />
-        <Stack.Screen name="Taketest" component={TakeTest} />
+        <Stack.Screen name="NameExame" component={NameExame} />
+        <Stack.Screen name="ExameTest" component={ExamTest} />
       </Stack.Navigator>
     </>
-  );
+   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  input: {
-    marginVertical: 10,
-    marginBottom: 15,
-  },
-  loginButton: {
-    marginVertical: 32,
-  },
-
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    marginBottom: 100,
-  },
-});

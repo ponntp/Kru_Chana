@@ -6,15 +6,8 @@ import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-
-const subject = 'sssss'
-
-const editSubject = () => {
-    // subject = this.subject
-    Alert.alert(subject)
-}
-
-class exam extends Component {
+class examTest extends Component {
+  
 
     constructor() {
         super();
@@ -29,31 +22,9 @@ class exam extends Component {
           <View style={styles.container}>
 
             <Text>
-              Exame 1
+              Hello
             </Text>
-
-            {/* <Input
-                placeholder="Question"
-                leftIcon={{ type: 'font-awesome', name: 'book' }}
-                style={styles}
-                // value={this.subject}
-                // onChangeText={(val) => editSubject}
-            /> */}
             
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('ExameTest')}
-                // onPress={editSubject}
-            />
-
-            <Text>
-              Exame 2
-            </Text>
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-            />
             
             <FilledButton title={'Logout'} style={styles.loginButton} onPress={()=> logout()} />   
 
@@ -88,4 +59,4 @@ const styles = StyleSheet.create({
     }
   });
 
-  export default exam;
+  export default examTest;

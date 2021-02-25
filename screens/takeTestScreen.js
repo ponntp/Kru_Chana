@@ -38,15 +38,6 @@ function ScoreSystem(userInput, awnser, testNumber) {
   console.log(rawScore); //test temp
 }
 
-// function FinishTest() { // ********** "FinishTest" call when user press "Finish button" **********
-//   rawScore =  rawScore.filter(function(item) {
-//     return item == "Correct";
-//   });
-//   score = rawScore.length;
-//   isFinishTest = true; // switch page here ****************************************************************************** alert score
-//   alert(score)
-
-// }
 
 export default class StudentTakeTest extends React.Component {
   constructor() {
