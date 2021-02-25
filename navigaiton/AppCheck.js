@@ -27,38 +27,29 @@ const loopdata = (user) => {
 
 export default function checkRoleScreen() {
   const {user} = useContext(AuthContext);
-  const [Email, setEmail] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await firestore()
-          .collection('Users')
-          .get()
-          .then((querySnapshot) => {
-            // console.log('Total Users: ',querySnapshot.size)
-            querySnapshot.forEach((doc) => {
-              const {Email, Teacher} = doc.data();
-              list.push({
-                id: doc.id,
-                Email,
-                Teacher,
-              });
+  // Not a realtime database only once when login only for decrease memory.
+  const fetchData = async () => {
+    try {
+      await firestore()
+        .collection('Users')
+        .get()
+        .then((querySnapshot) => {
+          console.log('Total Users: ', querySnapshot.size);
+          querySnapshot.forEach((doc) => {
+            const {Email, Teacher} = doc.data();
+            list.push({
+              id: doc.id,
+              Email,
+              Teacher,
             });
           });
+        });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-        setEmail(list);
-        if (loading) {
-          setLoading(false);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    fetchData();
-  }, []);
+  fetchData();
 
   loopdata(user);
 
@@ -68,8 +59,7 @@ export default function checkRoleScreen() {
         <Stack.Screen name="HomeTeacher" component={HomeTeacher} />
         <Stack.Screen name="MakeSubject" component={MakeSubject} />
         <Stack.Screen name="MakeQuestion" component={MakeQuestion} />
-        <Stack.Screen name="studentScore" component={studentScore}/>
-
+        <Stack.Screen name="studentScore" component={studentScore} />
       </Stack.Navigator>
     </>
   ) : (
@@ -80,5 +70,5 @@ export default function checkRoleScreen() {
         <Stack.Screen name="ExameTest" component={ExamTest} />
       </Stack.Navigator>
     </>
-   );
+  );
 }
