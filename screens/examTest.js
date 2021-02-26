@@ -43,7 +43,6 @@ Object.size = function(obj) {   // ********** count element in dict (student : a
 class StudentTakeTest extends React.Component {
   constructor(props) {
     super(props);
-    this.fireStoreData = firestore().collection("SF210").doc('Subject').collection('Exam');
     this.state = {
       students : arrayDictStudents,
       userArr: []
@@ -79,6 +78,9 @@ class StudentTakeTest extends React.Component {
   }
 
   render() {
+    const {text} = this.props.route.params
+    console.log({text}.text)
+    this.fireStoreData = firestore().collection("SF210").doc({text}.text).collection('Exam');
     
     {
       this.state.userArr.map((item, i) => {
@@ -93,7 +95,6 @@ class StudentTakeTest extends React.Component {
             )
 
       })
-      console.log(arrayDictStudents);
     }
 
     return (

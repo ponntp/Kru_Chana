@@ -15,12 +15,18 @@ class exam extends Component {
         this.fireStoreData = firestore().collection('SF210').doc('Name').collection('Name')
     this.state = {
       userArr: [],
+      buttonName: ''
     };
     }
     componentDidMount() {
       this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
     }
-  
+    
+    inputValueUpdate = (val, prop) => {
+      const state = this.state;
+      state[prop] = val;
+      this.setState(state);
+    }
 
     componentWillUnmount() {
       this.unsubscribe();
@@ -52,6 +58,7 @@ class exam extends Component {
                   title={item.name}
                   onPress={() => {
                     this.props.navigation.navigate(item.name);
+                    this.props.navigation.navigate('ExamTest', {text: item.name});
                   }}
                 />
 
