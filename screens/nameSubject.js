@@ -24,7 +24,7 @@ class sub extends Component {
             </Text>
             
             <Button 
-                title='Exame'
+                title='Math'
                 style={styles.loginButton} 
                 onPress={() => this.props.navigation.navigate('Name Exame')}
             />
@@ -33,24 +33,37 @@ class sub extends Component {
               Sub 2
             </Text>
             <Button 
-                title='Exame'
+                title='English'
                 style={styles.loginButton} 
+                onPress={() => this.props.navigation.navigate('Name Exame')}
             />
 
             <Text>
               Sub 3
             </Text>
             <Button 
-                title='Exame'
+                title='Science'
                 style={styles.loginButton} 
+                onPress={() => this.props.navigation.navigate('Name Exame')}
             />
 
             <Text>
               Sub 4
             </Text>
             <Button 
-                title='Exame'
+                title='Software Process'
                 style={styles.loginButton} 
+                onPress={() => this.props.navigation.navigate('Name Exame')}
+            />
+
+
+            <Text>
+              Sub 5
+            </Text>
+            <Button 
+                title='Code'
+                style={styles.loginButton} 
+                onPress={() => this.props.navigation.navigate('subject_Code')}
             />
 
           </View>

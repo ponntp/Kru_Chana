@@ -35,25 +35,25 @@ class addSubject extends Component {
             <FilledButton 
                 title='English'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('MakeQuestion')}
+                onPress={() => this.props.navigation.navigate('LinkToEng')}
                 // onPress={editSubject}
             />
             <FilledButton 
                 title='Science'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('MakeQuestion')}
+                onPress={() => this.props.navigation.navigate('LinkToScience')}
                 // onPress={editSubject}
             />
             <FilledButton 
                 title='Software Process'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('MakeQuestion')}
+                onPress={() => this.props.navigation.navigate('LinkToSoftwareProcess')}
                 // onPress={editSubject}
             />
             <FilledButton 
                 title='Code'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('MakeQuestion')}
+                onPress={() => this.props.navigation.navigate('LinkToCode')}
                 // onPress={editSubject}
             />
             

@@ -11,7 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 class test extends React.Component {
   constructor(props) {
     super(props);
-    this.usersCollectionRef = firestore().collection('subject_Math').doc('Name').collection('Name')
+    this.usersCollectionRef = firestore().collection('subject_Science').doc('Name').collection('Name')
     this.state = {
       name: ''
     };
@@ -55,7 +55,7 @@ class test extends React.Component {
                 title='NEXT'
                 style={styles.loginButton} 
                 onPress={() => {
-                  this.props.navigation.navigate('Math', {text: this.state.name});
+                  this.props.navigation.navigate('Science', {text: this.state.name});
                   this.storeUser()}
                 }
                

@@ -13,8 +13,23 @@ import NameExame from '../screens/nameExam';
 import ExamTest from '../screens/examTest';
 import Subject from '../screens/nameSubject';
 
+
+import subject_Code from '../SubjectStudentChoose/Code';
+
+
+
+
 import LinkToMath from '../NavToExame/LinkToMath';
+import LinkToCode from '../NavToExame/LinkToCode';
+import LinkToEng from '../NavToExame/LinkToEng';
+import LinkToScience from '../NavToExame/LinkToScience';
+import LinkToSoftware from '../NavToExame/LinkToSoftware';
+
 import Math from '../Subject/Math';
+import Code from '../Subject/Code'; 
+import Science from '../Subject/Science';
+import Eng from '../Subject/English';
+import Software from '../Subject/SoftwareProcess'
 
 const Stack = createStackNavigator();
 var teacher = null;
@@ -73,8 +88,19 @@ export default function checkRoleScreen() {
         <Stack.Screen name="MakeSubject" component={MakeSubject} />
         <Stack.Screen name="MakeQuestion" component={MakeQuestion}/>
         <Stack.Screen name="studentScore" component={studentScore}/>
+
+
         <Stack.Screen name="Make Name Exame" component={LinkToMath}/>
+        <Stack.Screen name="LinkToCode" component={LinkToCode}/>
+        <Stack.Screen name="LinkToEng" component={LinkToEng}/>
+        <Stack.Screen name="LinkToScience" component={LinkToScience}/>
+        <Stack.Screen name="LinkToSoftwareProcess" component={LinkToSoftware}/>
+
         <Stack.Screen name="Math" component={Math}/>
+        <Stack.Screen name="Code" component={Code}/>
+        <Stack.Screen name="Science" component={Science}/>
+        <Stack.Screen name="Eng" component={Eng}/>
+        <Stack.Screen name="Software" component={Software}/>
 
       </Stack.Navigator>
     </>
@@ -85,6 +111,8 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Name Subject" component={Subject} />
         <Stack.Screen name="Name Exame" component={NameExame} />
         <Stack.Screen name="ExamTest" component={ExamTest} />
+        <Stack.Screen name="subject_Code" component={subject_Code}/>
+        
       </Stack.Navigator>
     </>
    );

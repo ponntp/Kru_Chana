@@ -10,16 +10,19 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 class addData extends Component {
 
-  constructor() {
-    super();
-    this.usersCollectionRef = firestore().collection('science');
+  constructor(props) {
+    super(props);
+    
     this.state = {
+      text: '',
       question: "",
       choice1: "",
       choice2: "",
       choice3: "",
-      choice4:""
+      choice4:"",
+      ans: ""
     }
+    
 
 }
 
@@ -30,19 +33,23 @@ class addData extends Component {
 }
 
  storeUser() {
-        this.usersCollectionRef.add({
+  
+      
+  this.usersCollectionRef.add({
           question: this.state.question,
           choice1: this.state.choice1,
           choice2: this.state.choice2,
           choice3: this.state.choice3,
-          choice4: this.state.choice4
+          choice4: this.state.choice4,
+          ans: this.state.ans
         }).then((res) => {
             this.setState({
                 question: '',
                 choice1: '',
                 choice2: '',
                 choice3: '',
-                choice4: ''
+                choice4: '',
+                ans:''
             })
         })
         .catch((err) => {
@@ -52,7 +59,11 @@ class addData extends Component {
             })
         })
     }
+  
     render (){
+      const {text} = this.props.route.params
+      console.log({text}.text)
+      this.usersCollectionRef = firestore().collection('subject_Science').doc({text}.text).collection('Exam')
       return (
         <ScrollView>
           <View style={styles.container}>
@@ -94,9 +105,18 @@ class addData extends Component {
      value={this.state.choice4}
      onChangeText={(val) => this.inputValueUpdate(val, 'choice4')}
     />
+
+    
+    <Input
+     placeholder="Answer"
+     leftIcon={{ type: 'font-awesome', name: 'caret-right' }}
+     style={styles}
+     value={this.state.ans}
+     onChangeText={(val) => this.inputValueUpdate(val, 'ans')}
+    />
     
               <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />
-              <FilledButton title={'Logout'} style={styles.loginButton} onPress={()=> logout()} />      
+               
            </View>
            </ScrollView>
       )

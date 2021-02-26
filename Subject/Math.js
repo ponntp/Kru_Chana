@@ -63,7 +63,7 @@ class addData extends Component {
     render (){
       const {text} = this.props.route.params
       console.log({text}.text)
-      this.usersCollectionRef = firestore().collection('SF210').doc({text}.text).collection('Exam')
+      this.usersCollectionRef = firestore().collection('subject_Math').doc({text}.text).collection('Exam')
       return (
         <ScrollView>
           <View style={styles.container}>
