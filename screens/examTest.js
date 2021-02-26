@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Text, Button, TouchableOpacity, TouchableHighlight} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
@@ -9,35 +9,44 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 
 let arrayDictStudents = [];
+let score = [];
+let outPutScore = 0;
+let tempQuestion = [];
 
+let kuy = "";
 
-function checkID (examName , score){ // ********** Check if exam score is valid (not null)
-  if (score != null){
-    return "\t\t" + examName + "\t\t"+ score + "\n"
-  } 
-  return ""
+function FinishTest(){
+  score = score.filter(function (item) {
+    return item == 'Correct';
+  });
+  outPutScore = score.length;
+  console.log(outPutScore);
 }
 
-function countExam (eachStudentDict){
-  let temp = "";
-  let keys = Object.keys(eachStudentDict);
-  keys.splice(0,1);   // remove the key ("name")
 
-  console.log(keys);
-  for (var i = 0; i < keys.length/2 ; i++){
-    temp += checkID(eachStudentDict[keys[i*2]] , eachStudentDict[keys[i*2+1]]) // cradit Dome
-  }
+
+function ScoreSystem(eachStudent, awnser){
   
-  return temp;
-}
+  if (!(tempQuestion.includes(eachStudent["question"]))){
+    tempQuestion.push(eachStudent["question"]);
+    score.push("None");
 
-Object.size = function(obj) {   // ********** count element in dict (student : arrayDictStudents)
-  var size = 0,
-    key;
-  for (key in obj) {
-    if (obj.hasOwnProperty(key)) size++;
+    if (awnser == eachStudent["ans"]) {
+      score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Correct');
+    } else {
+      score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Uncorrect');
+    }
+  } else {
+    if (awnser == eachStudent["ans"]) {
+      score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Correct');
+    } else {
+      score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Uncorrect');
+    }
   }
-  return size;
+  // console.log(tempQuestion);
+  console.log(score);
+
+
 }
 
 class StudentTakeTest extends React.Component {
@@ -46,6 +55,7 @@ class StudentTakeTest extends React.Component {
     this.state = {
       students : arrayDictStudents,
       userArr: []
+
     }
   }
 
@@ -78,7 +88,7 @@ class StudentTakeTest extends React.Component {
   }
 
   render() {
-    const {text} = this.props.route.params
+const {text} = this.props.route.params
     console.log({text}.text)
     this.fireStoreData = firestore().collection("SF210").doc({text}.text).collection('Exam');
     
@@ -95,6 +105,7 @@ class StudentTakeTest extends React.Component {
             )
 
       })
+      console.log(arrayDictStudents);
     }
 
     return (
@@ -103,19 +114,25 @@ class StudentTakeTest extends React.Component {
         {this.state.students.map(eachStudent => (
             <>
           <Text>
-             {eachStudent.question}
+            {console.log(eachStudent)                   /*console log this*/} 
+            {eachStudent.question}
           </Text> 
-          <Button title={eachStudent.choice1}/>
-          <Button title={eachStudent.choice2}/>
-          <Button title={eachStudent.choice3}/>
-          <Button title={eachStudent.choice4}/>
-          <Button title={eachStudent.ans}/>
+
+          <Button title={eachStudent.choice1} onPress={()=>{ScoreSystem(eachStudent , "1")}}></Button>
+          <Button title={eachStudent.choice2} onPress={()=>{ScoreSystem(eachStudent , "2")}}></Button>
+          <Button title={eachStudent.choice3} onPress={()=>{ScoreSystem(eachStudent , "3")}}></Button>
+          <Button title={eachStudent.choice4} onPress={()=>{ScoreSystem(eachStudent , "4")}}></Button>
+          <Text>
+            {"\n"}
+          </Text>
+
           </>
           
-          
-        )
-        )}
+        ))}
       </View>
+      <Text>{"\n"}</Text>
+
+      <Button title = "Summit" onPress={() => {FinishTest()}}></Button>
     </ScrollView>
     );
   }
