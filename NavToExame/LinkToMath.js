@@ -54,7 +54,10 @@ class test extends React.Component {
             <FilledButton 
                 title='NEXT'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('Math', {text: this.state.name})}
+                onPress={() => {
+                  this.props.navigation.navigate('Math', {text: this.state.name});
+                  this.storeUser()}
+                }
                
             />
           </View>
