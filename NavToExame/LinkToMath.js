@@ -50,7 +50,7 @@ class test extends React.Component {
                 onChangeText = {(val) => this.inputValueUpdate(val, 'name')}
                 style={styles}
             />
-                <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />
+          
             <FilledButton 
                 title='NEXT'
                 style={styles.loginButton} 
