@@ -11,8 +11,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 class test extends React.Component {
   constructor(props) {
     super(props);
+    this.usersCollectionRef = firestore().collection('SF210').doc('Name').collection('Name')
     this.state = {
-      data: ''
+      name: ''
     };
 
 
@@ -22,6 +23,23 @@ class test extends React.Component {
     state[prop] = val;
     this.setState(state);
   }
+
+  storeUser() { 
+    this.usersCollectionRef.add({
+            name: this.state.name
+          }).then((res) => {
+              this.setState({
+                  name: ''
+              })
+          })
+          .catch((err) => {
+              console.log('Error found: ', err);
+              this.setState({
+                  isLoading: false
+              })
+          })
+      }
+
   render() {
     return (
         <ScrollView>
@@ -29,13 +47,15 @@ class test extends React.Component {
             <Input
                 placeholder="Text"
                 leftIcon={{ type: 'font-awesome', name: 'book' }}
-                onChangeText = {(val) => this.inputValueUpdate(val, 'data')}
+                onChangeText = {(val) => this.inputValueUpdate(val, 'name')}
                 style={styles}
             />
+                <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />
             <FilledButton 
                 title='NEXT'
                 style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('Math', {text: this.state.data})}
+                onPress={() => this.props.navigation.navigate('Math', {text: this.state.name})}
+               
             />
           </View>
         </ScrollView>

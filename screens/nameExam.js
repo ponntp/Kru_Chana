@@ -12,17 +12,51 @@ class exam extends Component {
     constructor() {
         super();
 
+        this.fireStoreData = firestore().collection('SF210').doc('Name').collection('Name')
+    this.state = {
+      userArr: [],
+    };
+    }
+    componentDidMount() {
+      this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
+    }
+  
+
+    componentWillUnmount() {
+      this.unsubscribe();
     }
 
-
-    
+    getCollection = (querySnapshot) => {
+      const userArr = [];
+      querySnapshot.forEach((res) => {
+        const {name} = res.data();
+        userArr.push({
+          key: res.id,
+          res,
+          name,
+        });
+      });
+      this.setState({
+        userArr,
+      });
+    };
 
     render (){
       
       return (
         <ScrollView>
           <View style={styles.container}>
+          {this.state.userArr.map((item, i) => {
+          return (
+                <Button
+                  title={item.name}
+                  onPress={() => {
+                    this.props.navigation.navigate(item.name);
+                  }}
+                />
 
+          );
+        })}
             <Text>
               Exame 1
             </Text>

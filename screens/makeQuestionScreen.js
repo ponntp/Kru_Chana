@@ -31,9 +31,7 @@ class addData extends Component {
     this.setState(state);
 }
 
- storeUser() {
-  
-      
+ storeUser() { 
   this.usersCollectionRef.add({
           question: this.state.question,
           choice1: this.state.choice1,
