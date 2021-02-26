@@ -12,7 +12,7 @@ class exam extends Component {
     constructor() {
         super();
 
-        this.fireStoreData = firestore().collection('SF210').doc('Name').collection('Name')
+        this.fireStoreData = firestore().collection('subject_Math').doc('Name').collection('Name')
     this.state = {
       userArr: [],
       buttonName: ''
@@ -64,31 +64,6 @@ class exam extends Component {
 
           );
         })}
-            <Text>
-              Exame 1
-            </Text>
-            
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('ExameTest')}
-            />
-
-            <Text>
-              Exame 2
-            </Text>
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-            />
-
-            <Text>
-              Exame 3
-            </Text>
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-            />
 
           </View>
         </ScrollView>

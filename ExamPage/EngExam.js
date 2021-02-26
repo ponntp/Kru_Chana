@@ -90,7 +90,7 @@ class StudentTakeTest extends React.Component {
   render() {
 const {text} = this.props.route.params
     console.log({text}.text)
-    this.fireStoreData = firestore().collection("subject_Math").doc({text}.text).collection('Exam');
+    this.fireStoreData = firestore().collection("subject_Eng").doc({text}.text).collection('Exam');
     
     {
       this.state.userArr.map((item, i) => {

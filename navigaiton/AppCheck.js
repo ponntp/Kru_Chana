@@ -15,8 +15,14 @@ import Subject from '../screens/nameSubject';
 
 
 import subject_Code from '../SubjectStudentChoose/Code';
+import subject_Eng from '../SubjectStudentChoose/Eng';
+import subject_Science from '../SubjectStudentChoose/Science';
+import subject_SoftWare from '../SubjectStudentChoose/SoftwareProcess'
 
-
+import CodeExam from '../ExamPage/CodeExam';
+import EngExam from '../ExamPage/EngExam';
+import ScienceExam from '../ExamPage/ScienceExam';
+import SoftwareExam from '../ExamPage/SoftwareExam';
 
 
 import LinkToMath from '../NavToExame/LinkToMath';
@@ -111,8 +117,16 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Name Subject" component={Subject} />
         <Stack.Screen name="Name Exame" component={NameExame} />
         <Stack.Screen name="ExamTest" component={ExamTest} />
+
         <Stack.Screen name="subject_Code" component={subject_Code}/>
-        
+        <Stack.Screen name="subject_Eng" component={subject_Eng}/>
+        <Stack.Screen name="subject_Science" component={subject_Science}/>
+        <Stack.Screen name="subject_SoftWare" component={subject_SoftWare}/>
+
+        <Stack.Screen name="CodeExam" component={CodeExam}/>
+        <Stack.Screen name="EngExam" component={EngExam}/>
+        <Stack.Screen name="ScienceExam" component={ScienceExam}/>
+        <Stack.Screen name="SoftwareExam" component={SoftwareExam}/>
       </Stack.Navigator>
     </>
    );

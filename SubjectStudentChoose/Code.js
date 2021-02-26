@@ -58,37 +58,13 @@ class exam extends Component {
                   title={item.name}
                   onPress={() => {
                     this.props.navigation.navigate(item.name);
-                    this.props.navigation.navigate('ExamTest', {text: item.name});
+                    this.props.navigation.navigate('CodeExam', {text: item.name});
                   }}
                 />
 
           );
         })}
-            <Text>
-              Exame 1
-            </Text>
             
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('ExameTest')}
-            />
-
-            <Text>
-              Exame 2
-            </Text>
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-            />
-
-            <Text>
-              Exame 3
-            </Text>
-            <Button 
-                title='Exame'
-                style={styles.loginButton} 
-            />
 
           </View>
         </ScrollView>
