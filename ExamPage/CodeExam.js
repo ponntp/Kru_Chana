@@ -21,6 +21,7 @@ function FinishTest(){
   });
   outPutScore = score.length;
   console.log(outPutScore);
+  alert("Your Score : " + outPutScore);
 }
 
 

@@ -8,6 +8,7 @@ import {AuthContext} from '../navigaiton/AuthProvider';
 import CheckBox from '@react-native-community/checkbox';
 
 import firestore from '@react-native-firebase/firestore';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function loginScreen({navigation}) {
   const [email, setEmail] = useState();
@@ -32,6 +33,7 @@ export default function loginScreen({navigation}) {
   };
 
   return (
+      <ScrollView>
     <View style={styles.container}>
       <Heading style={styles.title}>REGISTER</Heading>
       <Input
@@ -81,6 +83,8 @@ export default function loginScreen({navigation}) {
         }}
       />
     </View>
+      </ScrollView>
+    
   );
 }
 

@@ -18,7 +18,6 @@ class addSubject extends Component {
 
     constructor() {
         super();
-
     }
     
     render (){
@@ -57,7 +56,6 @@ class addSubject extends Component {
                 // onPress={editSubject}
             />
             
-            <FilledButton title={'Logout'} style={styles.loginButton} onPress={()=> logout()} />      
           </View>
         </ScrollView>
       )
