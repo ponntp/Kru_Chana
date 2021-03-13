@@ -8,7 +8,9 @@ import { Input, ListItem, Button, Image } from 'react-native-elements';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
+
 class chat extends React.Component {
+    static contextType = AuthContext;
 
     constructor(props) {
         super(props);
@@ -40,9 +42,10 @@ class chat extends React.Component {
     getCollection = (querySnapshot) => {
         const textArr = [];
         querySnapshot.forEach((res) => {
-            const { chat } = res.data();
+            const { chat, name } = res.data();
             textArr.push({
-            chat
+            chat,
+            name
         })
         })
         this.setState({
@@ -53,10 +56,12 @@ class chat extends React.Component {
   storeUser() { 
     this.usersCollectionRef.add({
             chat: this.state.chat,
+            name: this.context.user.email,
             timestamp: firestore.FieldValue.serverTimestamp()
           }).then((res) => {
               this.setState({
-                chat: ''
+                chat: '',
+                name: ''
               })
           })
           .catch((err) => {
@@ -67,9 +72,9 @@ class chat extends React.Component {
           })
       }
 
-  render() {
+      render() {
 
-    return (
+      return (
         <ScrollView>
 
             <ScrollView style={stylesTest.massage}>
@@ -81,7 +86,7 @@ class chat extends React.Component {
                             <View>
 
                                 <Text style={stylesTest.namechat}>
-                                    Admin
+                                    {item.name}
                                 </Text>
 
                                 <ListItem key={i} bottomDivider>
