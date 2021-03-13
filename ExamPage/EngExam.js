@@ -57,10 +57,13 @@ class StudentTakeTest extends React.Component {
       userArr: []
     }
   }
-  onSelect(index, value){
+
+  onSelect(index, value, eachStudent){
     this.setState({
     text: `Selected index: ${index} , value: ${value}`})
+    ScoreSystem(eachStudent, value)
   }
+
   componentDidMount() {
     this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
   }
