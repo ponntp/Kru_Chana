@@ -14,7 +14,6 @@ let score = [];
 let outPutScore = 0;
 let tempQuestion = [];
 
-let kuy = "";
 
 function FinishTest(){
   score = score.filter(function (item) {
@@ -23,8 +22,10 @@ function FinishTest(){
   outPutScore = score.length;
   console.log(outPutScore);
   alert("Your Score : " + outPutScore);
+  score = [];
+  outPutScore = 0;
+  tempQuestion = [];
 }
-
 
 
 function ScoreSystem(eachStudent, awnser){
@@ -32,7 +33,7 @@ function ScoreSystem(eachStudent, awnser){
   if (!(tempQuestion.includes(eachStudent["question"]))){
     tempQuestion.push(eachStudent["question"]);
     score.push("None");
-
+ 
     if (awnser == eachStudent["ans"]) {
       score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Correct');
     } else {
@@ -45,11 +46,8 @@ function ScoreSystem(eachStudent, awnser){
       score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Uncorrect');
     }
   }
-  // console.log(tempQuestion);
   console.log(score);
-
-
-}
+} 
 
 class StudentTakeTest extends React.Component {
   constructor(props) {
@@ -57,14 +55,13 @@ class StudentTakeTest extends React.Component {
     this.state = {
       students : arrayDictStudents,
       userArr: []
-
     }
   }
 
-  onSelect(index, value){
+  onSelect(index, value, eachStudent){
     this.setState({
     text: `Selected index: ${index} , value: ${value}`})
-
+    ScoreSystem(eachStudent, value)
   }
 
   componentDidMount() {
@@ -74,6 +71,7 @@ class StudentTakeTest extends React.Component {
   componentWillUnmount(){
     this.unsubscribe();
   }
+
   getCollection = (querySnapshot) => {
     const userArr = [];
     querySnapshot.forEach((res) => {
@@ -98,7 +96,7 @@ class StudentTakeTest extends React.Component {
     if (arrayDictStudents.length != 0){
       arrayDictStudents = [];
     }
-const {text} = this.props.route.params
+    const {text} = this.props.route.params
     console.log({text}.text)
     this.fireStoreData = firestore().collection("subject_Math").doc({text}.text).collection('Exam');
     
@@ -115,7 +113,7 @@ const {text} = this.props.route.params
             )
 
       })
-      console.log(arrayDictStudents);
+      // console.log(arrayDictStudents);
     }
 
     return (
@@ -133,17 +131,19 @@ const {text} = this.props.route.params
           thickness={4}
           color='#00CABA'
           highlightColor='#97FFDA'
-          onSelect = {(index, value) => this.onSelect(index, value),arrayDictStudents = [] , (eachStudent, awnser) => ScoreSystem(eachStudent , awnser)}>
-              <RadioButton value={'item1'} eachStudent={"1"}>
+          onSelect = {(index, value) => this.onSelect(index, value, eachStudent)}
+          >
+
+              <RadioButton value={1}>
                   <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
               </RadioButton>
-              <RadioButton value={'item2'} eachStudent={"2"}>
+              <RadioButton value={2}>
                   <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
               </RadioButton>
-              <RadioButton value={'item3'} eachStudent={"3"}>
+              <RadioButton value={3}>
                   <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
               </RadioButton>
-              <RadioButton value={'item4'} eachStudent={"4"}>
+              <RadioButton value={4}>
                   <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
               </RadioButton>
           </RadioGroup>
