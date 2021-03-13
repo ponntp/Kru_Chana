@@ -37,7 +37,8 @@ import Science from '../Subject/Science';
 import Eng from '../Subject/English';
 import Software from '../Subject/SoftwareProcess'
 
-import Chat from '../screens/chatTest'
+import ChatTeacher from '../screens/chatTeacher'
+import ChatStudent from '../screens/chatStudent'
 
 const Stack = createStackNavigator();
 var teacher = null;
@@ -110,7 +111,7 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Eng" component={Eng}/>
         <Stack.Screen name="Software" component={Software}/>
 
-        <Stack.Screen name="Chat" component={Chat}/>
+        <Stack.Screen name="Chat Teacher" component={ChatTeacher}/>
 
       </Stack.Navigator>
     </>
@@ -131,6 +132,9 @@ export default function checkRoleScreen() {
         <Stack.Screen name="EngExam" component={EngExam}/>
         <Stack.Screen name="ScienceExam" component={ScienceExam}/>
         <Stack.Screen name="SoftwareExam" component={SoftwareExam}/>
+
+        <Stack.Screen name="Chat Student" component={ChatStudent}/>
+
       </Stack.Navigator>
     </>
    );

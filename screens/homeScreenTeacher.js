@@ -26,7 +26,7 @@ export default function homeScreen({navigation}) {
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Chat')}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Chat Teacher')}>
         <Text style={styles.loginButtonText}>
         Chat
         </Text>
