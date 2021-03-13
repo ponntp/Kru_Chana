@@ -73,7 +73,7 @@
 
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
@@ -113,20 +113,17 @@ class ShowData extends Component {
   }
   render(){
     return(
-      <View>
-        <Text> Hi Test pull data </Text>
+      <View style={styles.container}>
         {
           this.state.userArr.map((item, i) => {
             return (
-                <ListItem
-                  key={i}
-                  bottomDivider>
-                    <ListItem.Content>
-                      <ListItem.Title>{item.name}</ListItem.Title>
-                      <Text>{item.score}</Text>
+                
+                    <ListItem.Content style={styles.box}>
+                      <Text style={styles.textName}>Name: {item.name}</Text>
+                      <Text style={styles.textScore}>Score: {item.score}</Text>
                     </ListItem.Content>
 
-                </ListItem>
+                
             );
           })
         }
@@ -138,26 +135,30 @@ class ShowData extends Component {
 
 
 const styles = StyleSheet.create({
-    title: {
-      marginBottom: 20,
-      textAlign: 'center',
-    },
-    input: {
-      marginVertical: 10,
-      marginBottom: 15,
-    },
-    loginButton: {
-      marginVertical: 32,
-    },
+  textName: {
+    paddingLeft:10,
+    fontSize: 20,
+  },
+  textScore: {
+    paddingLeft:10,
+    fontSize: 16,
+  },
+
+  box: {
+    margin: 10,
+    marginHorizontal: 50,
+    backgroundColor: '#00CABA',
+    shadowColor: "#000000",
+    shadowOpacity: 5,
+    shadowRadius: 5,
+    elevation: 5,
+    borderRadius: 10,
+  },
   
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-      marginBottom: 100
-  
-    }
+  container: {
+    flex: 1,
+    backgroundColor: '#E2FCFA',
+  },
   });
 
 

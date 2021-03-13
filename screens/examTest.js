@@ -7,6 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 
 let arrayDictStudents = [];
 let score = [];
@@ -60,6 +61,11 @@ class StudentTakeTest extends React.Component {
     }
   }
 
+  onSelect(index, value){
+    this.setState({
+    text: `Selected index: ${index} , value: ${value}`})
+
+  }
 
   componentDidMount() {
     this.unsubscribe = this.fireStoreData.onSnapshot(this.getCollection);
@@ -89,6 +95,9 @@ class StudentTakeTest extends React.Component {
   }
 
   render() {
+    if (arrayDictStudents.length != 0){
+      arrayDictStudents = [];
+    }
 const {text} = this.props.route.params
     console.log({text}.text)
     this.fireStoreData = firestore().collection("subject_Math").doc({text}.text).collection('Exam');
@@ -111,18 +120,34 @@ const {text} = this.props.route.params
 
     return (
       <ScrollView>
-      <View>
+      <View style={styles.container}>
         {this.state.students.map(eachStudent => (
             <>
-          <Text>
+          <Text style={styles.text_head}>
             {console.log(eachStudent)                   /*console log this*/} 
             {eachStudent.question}
           </Text> 
 
-          <Button title={eachStudent.choice1} onPress={()=>{ScoreSystem(eachStudent , "1")}}></Button>
-          <Button title={eachStudent.choice2} onPress={()=>{ScoreSystem(eachStudent , "2")}}></Button>
-          <Button title={eachStudent.choice3} onPress={()=>{ScoreSystem(eachStudent , "3")}}></Button>
-          <Button title={eachStudent.choice4} onPress={()=>{ScoreSystem(eachStudent , "4")}}></Button>
+          <RadioGroup 
+          size={40}
+          thickness={4}
+          color='#00CABA'
+          highlightColor='#97FFDA'
+          onSelect = {(index, value) => this.onSelect(index, value),arrayDictStudents = [] , (eachStudent, awnser) => ScoreSystem(eachStudent , awnser)}>
+              <RadioButton value={'item1'} eachStudent={"1"}>
+                  <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
+              </RadioButton>
+              <RadioButton value={'item2'} eachStudent={"2"}>
+                  <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
+              </RadioButton>
+              <RadioButton value={'item3'} eachStudent={"3"}>
+                  <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
+              </RadioButton>
+              <RadioButton value={'item4'} eachStudent={"4"}>
+                  <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
+              </RadioButton>
+          </RadioGroup>
+
           <Text>
             {"\n"}
           </Text>
@@ -130,10 +155,14 @@ const {text} = this.props.route.params
           </>
           
         ))}
+      
+      <TouchableOpacity style={styles.button_sub} onPress={()=>{FinishTest()}}>
+            <Text style={styles.text_sub}>
+              Summit
+            </Text>
+      </TouchableOpacity>
       </View>
-      <Text>{"\n"}</Text>
-
-      <Button title = "Summit" onPress={() => {FinishTest()}}></Button>
+      
     </ScrollView>
     );
   }
@@ -141,26 +170,55 @@ const {text} = this.props.route.params
 
 
 const styles = StyleSheet.create({
-    title: {
-      marginBottom: 20,
-      textAlign: 'center',
-    },
-    input: {
-      marginVertical: 10,
-      marginBottom: 15,
-    },
-    loginButton: {
-      marginVertical: 32,
-    },
-  
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-      marginBottom: 100
-  
-    }
+  title: {
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    marginVertical: 10,
+    marginBottom: 15,
+  },
+  loginButton: {
+    marginVertical: 32,
+  },
+
+  text:{
+    fontWeight: 'bold',
+    padding: 20,
+    fontSize: 25,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#E2FCFA',
+    justifyContent: 'center',
+    paddingBottom:200,
+
+  },
+
+  button_sub: {
+    
+    alignItems: "center",
+    backgroundColor: "#0E6655",
+    padding: 20,
+  },
+  text_head:{
+    fontWeight: 'bold',
+    padding: 20,
+    fontSize: 25,
+    textAlign: 'center',
+    backgroundColor: '#00CABA',
+    
+  },
+  text_choice:{
+    fontSize: 20,
+    paddingHorizontal: 20,
+  },
+  text_sub:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFF',
+
+  }
   });
 
 

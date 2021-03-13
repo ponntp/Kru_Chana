@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Alert } from 'react-native';
+import {View, StyleSheet, Text, Alert, TouchableOpacity} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
@@ -51,15 +51,15 @@ class test extends React.Component {
                 style={styles}
             />
           
-            <FilledButton 
-                title='NEXT'
-                style={styles.loginButton} 
-                onPress={() => {
+            <TouchableOpacity style={styles.loginButton} onPress={() => {
                   this.props.navigation.navigate('Science', {text: this.state.name});
                   this.storeUser()}
-                }
-               
-            />
+                }>
+              <Text style={styles.loginButtonText}>
+                NEXT
+              </Text>
+            </TouchableOpacity>
+
           </View>
         </ScrollView>
 
@@ -78,16 +78,30 @@ const styles = StyleSheet.create({
       marginBottom: 15,
     },
     loginButton: {
-      marginVertical: 32,
+      marginVertical: 10,
+      backgroundColor: '#00CABA',
+      width: 320,
+      height: 60,
+      borderRadius: 10,
+      shadowColor: "#000000",
+      shadowOpacity: 5,
+      shadowRadius: 5,
+      elevation: 5
+    },
+    loginButtonText: {
+      textAlign: 'center',
+      color: '#F0FFFF',
+      fontWeight: 'bold',
+      fontSize:20,
+      padding: 15
     },
 
     container: {
       flex: 1,
-      justifyContent: 'center',
+      backgroundColor: '#E2FCFA',
       alignItems: 'center',
-      padding: 20,
-      marginBottom: 100
-
+      paddingHorizontal: 20,
+      paddingVertical:262.2,
     }
 });
 

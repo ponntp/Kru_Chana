@@ -113,7 +113,7 @@ export default function checkRoleScreen() {
   ) : (
     <>
       <Stack.Navigator initialRouteName="HomeStudent">
-        <Stack.Screen name="HomeStudent" component={HomeStudent} />
+        <Stack.Screen name="Home Student" component={HomeStudent}/>
         <Stack.Screen name="Name Subject" component={Subject} />
         <Stack.Screen name="Name Exame" component={NameExame} />
         <Stack.Screen name="ExamTest" component={ExamTest} />

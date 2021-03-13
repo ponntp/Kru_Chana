@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Alert } from 'react-native';
-import {FilledButton} from '../components/FilledButton';
-import { AuthContext } from '../navigaiton/AuthProvider';
+import {View, StyleSheet, Text, Alert} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import {StudentChooseButton} from '../components/StudentChooseButton';
+
+import {FilledButton} from '../components/FilledButton';
+import { AuthContext } from '../navigaiton/AuthProvider';
 
 class exam extends Component {
 
@@ -50,11 +52,11 @@ class exam extends Component {
     render (){
       
       return (
-        <ScrollView>
+        <ScrollView style={styles.bg}>
           <View style={styles.container}>
           {this.state.userArr.map((item, i) => {
           return (
-                <Button
+                <StudentChooseButton
                   title={item.name}
                   onPress={() => {
                     this.props.navigation.navigate(item.name);
@@ -93,6 +95,9 @@ const styles = StyleSheet.create({
       padding: 20,
       marginBottom: 100
   
+    },
+    bg: {
+      backgroundColor: '#E2FCFA'
     }
   });
 

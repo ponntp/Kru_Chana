@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
@@ -114,9 +114,13 @@ class addData extends Component {
      value={this.state.ans}
      onChangeText={(val) => this.inputValueUpdate(val, 'ans')}
     />
-    
-              <FilledButton title={'ADD QUESTION'} style={styles.loginButton} onPress={() => this.storeUser()} />
                
+            <TouchableOpacity style={styles.loginButton} onPress={() =>  this.storeUser()}>
+              <Text style={styles.loginButtonText}>
+                ADD QUESTION
+              </Text>
+            </TouchableOpacity>
+
            </View>
            </ScrollView>
       )
@@ -137,16 +141,31 @@ const styles = StyleSheet.create({
       marginBottom: 15,
     },
     loginButton: {
-      marginVertical: 32,
+      marginVertical: 10,
+      backgroundColor: '#00CABA',
+      width: 320,
+      height: 60,
+      borderRadius: 10,
+      shadowColor: "#000000",
+      shadowOpacity: 5,
+      shadowRadius: 5,
+      elevation: 5
+    },
+    loginButtonText: {
+      textAlign: 'center',
+      color: '#F0FFFF',
+      fontWeight: 'bold',
+      fontSize:20,
+      padding: 15
     },
   
     container: {
       flex: 1,
-      justifyContent: 'center',
+      backgroundColor: '#E2FCFA',
       alignItems: 'center',
-      padding: 20,
-      marginBottom: 100
-  
+      justifyContent: 'center',
+      paddingTop: 20,
+      paddingBottom: 127.5,
     }
   });
   export default addData;

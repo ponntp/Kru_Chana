@@ -1,14 +1,15 @@
 import * as React from 'react';
 import {useState, useContext} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {Heading} from '../components/Heading';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Input} from '../components/Input';
-import {FilledButton} from '../components/FilledButton';
 import {AuthContext} from '../navigaiton/AuthProvider';
 import CheckBox from '@react-native-community/checkbox';
-
 import firestore from '@react-native-firebase/firestore';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import {FilledButton} from '../components/FilledButton';
+import {Heading} from '../components/Heading';
+
 
 export default function loginScreen({navigation}) {
   const [email, setEmail] = useState();
@@ -35,7 +36,7 @@ export default function loginScreen({navigation}) {
   return (
       <ScrollView>
     <View style={styles.container}>
-      <Heading style={styles.title}>REGISTER</Heading>
+      <Text style={styles.title}>REGISTER</Text>
       <Input
         style={styles.input}
         labelValue={name}
@@ -65,23 +66,29 @@ export default function loginScreen({navigation}) {
         placeholderText="Password"
         secureTextEntry={true}
       />
-      <CheckBox
+
+      <CheckBox style={styles.checkBox}
         disabled={false}
         value={teacher}
         onValueChange={(isTeacher) => setTeacher(isTeacher)}
       />
-      <Text>
+
+      <Text style={styles.text}>
         Teacher (Check only you are teacher. If you're student, Please don't
         check this box.)
       </Text>
-      <FilledButton
-        title={'Sign Up'}
-        style={styles.loginButton}
-        onPress={() => {
+
+
+      <TouchableOpacity style={styles.loginButton} onPress={() => {
           register(email, password, name, lastname);
           addusers();
-        }}
-      />
+        }}>
+
+        <Text style={styles.loginButtonText}>
+          SIGN UP
+        </Text>
+      </TouchableOpacity>
+
     </View>
       </ScrollView>
     
@@ -90,22 +97,57 @@ export default function loginScreen({navigation}) {
 
 const styles = StyleSheet.create({
   title: {
-    marginBottom: 20,
+    color: '#00CABA',
     textAlign: 'center',
+    fontSize: 35,
+    width: 320,
+    marginBottom: 1,
+    fontWeight: 'bold',
+
   },
   input: {
     marginVertical: 10,
-    marginBottom: 15,
+    width: 320,
+    height: 60,
+    fontSize: 18,
+    marginBottom: 5,
+    shadowColor: "#000000",
+    shadowOpacity: 5,
+    shadowRadius: 5,
+    elevation: 5,
+    backgroundColor: '#FFFFFF'
   },
   loginButton: {
-    marginVertical: 32,
+    marginVertical: 10,
+    backgroundColor: '#00CABA',
+    width: 320,
+    height: 60,
+    borderRadius: 10,
+    shadowColor: "#000000",
+    shadowOpacity: 5,
+    shadowRadius: 5,
+    elevation: 5
+  },
+  
+  loginButtonText: {
+    textAlign: 'center',
+    color: '#F0FFFF',
+    fontWeight: 'bold',
+    fontSize:20,
+    padding: 15
   },
 
   container: {
     flex: 1,
+    padding: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
-    marginBottom: 100,
+    backgroundColor: '#E2FCFA',
+  },
+
+  text: {
+    color: '#00CABA',
+    fontSize: 18,
+    textAlign: 'center',
   },
 });

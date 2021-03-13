@@ -4,7 +4,7 @@ import {View, StyleSheet, Text, Alert } from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
-import { Input, ListItem, Button } from 'react-native-elements';
+import { Input, ListItem, Button, Image } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const subject = 'sssss'
@@ -24,38 +24,31 @@ class addSubject extends Component {
       return (
         <ScrollView>
           <View style={styles.container}>
-            
-            <FilledButton 
-                title='Math'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('Make Name Exame')}
-                // onPress={editSubject}
+            <Image source={require("../img/math.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('Make Name Exame')}
             />
-            <FilledButton 
-                title='English'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('LinkToEng')}
-                // onPress={editSubject}
+
+            <Image source={require("../img/eng.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('LinkToEng')}
             />
-            <FilledButton 
-                title='Science'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('LinkToScience')}
-                // onPress={editSubject}
+
+            <Image source={require("../img/sci.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('LinkToScience')}
             />
-            <FilledButton 
-                title='Software Process'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('LinkToSoftwareProcess')}
-                // onPress={editSubject}
+
+            <Image source={require("../img/sw.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('LinkToSoftwareProcess')}
+            /> 
+
+            <Image source={require("..//img/code.png")} 
+              style = {styles.picture}
+              onPress={() => this.props.navigation.navigate('LinkToCode')}
             />
-            <FilledButton 
-                title='Code'
-                style={styles.loginButton} 
-                onPress={() => this.props.navigation.navigate('LinkToCode')}
-                // onPress={editSubject}
-            />
-            
+
           </View>
         </ScrollView>
       )
@@ -79,11 +72,16 @@ const styles = StyleSheet.create({
   
     container: {
       flex: 1,
-      justifyContent: 'center',
+      backgroundColor: '#E2FCFA', //color wallpaper
       alignItems: 'center',
-      padding: 20,
-      marginBottom: 100
-  
+      paddingHorizontal: 20, 
+      paddingTop: 29
+    },
+
+    picture: {
+      width: 300,
+      height: 100,
+      marginVertical: 15
     }
   });
 
