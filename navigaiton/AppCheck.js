@@ -37,6 +37,8 @@ import Science from '../Subject/Science';
 import Eng from '../Subject/English';
 import Software from '../Subject/SoftwareProcess'
 
+import Chat from '../screens/chatTest'
+
 const Stack = createStackNavigator();
 var teacher = null;
 const list = [];
@@ -107,6 +109,8 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Science" component={Science}/>
         <Stack.Screen name="Eng" component={Eng}/>
         <Stack.Screen name="Software" component={Software}/>
+
+        <Stack.Screen name="Chat" component={Chat}/>
 
       </Stack.Navigator>
     </>
