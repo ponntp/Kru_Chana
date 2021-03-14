@@ -40,6 +40,19 @@ import Software from '../Subject/SoftwareProcess'
 import ChatTeacher from '../screens/chatTeacher'
 import ChatStudent from '../screens/chatStudent'
 
+import toScoreEng from '../scoreSubject/eng';
+import toScoreMath from '../scoreSubject/math';
+import toScoreSoftWare from '../scoreSubject/software';
+import toScoreCode from '../scoreSubject/code';
+import toScorescience from '../scoreSubject/science';
+
+import scoreCode from '../showScorePage/code';
+import scoreEng from '../showScorePage/eng';
+import scoreMath from '../showScorePage/math';
+import scoreScience from '../showScorePage/science';
+import scoreSoftware from '../showScorePage/software';
+
+
 const Stack = createStackNavigator();
 var teacher = null;
 const list = [];
@@ -112,6 +125,20 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Software" component={Software}/>
 
         <Stack.Screen name="Chat Teacher" component={ChatTeacher}/>
+
+        <Stack.Screen name="toScoreEng" component={toScoreEng}/>
+        <Stack.Screen name="toScoreMath" component={toScoreMath}/>
+        <Stack.Screen name="toScoreSoftWare" component={toScoreSoftWare}/>
+        <Stack.Screen name="toScoreCode" component={toScoreCode}/>
+        <Stack.Screen name="toScorescience" component={toScorescience}/>
+
+
+        <Stack.Screen name="scoreCode" component={scoreCode}/>
+        <Stack.Screen name="scoreEng" component={scoreEng}/>
+        <Stack.Screen name="scoreMath" component={scoreMath}/>
+        <Stack.Screen name="scoreScience" component={scoreScience}/>
+        <Stack.Screen name="scoreSoftware" component={scoreSoftware}/>
+
 
       </Stack.Navigator>
     </>

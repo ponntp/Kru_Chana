@@ -23,7 +23,6 @@ function FinishTest(){
   console.log(outPutScore);
   alert("Your Score : " + outPutScore);
   score = [];
-  outPutScore = 0;
   tempQuestion = [];
 }
 
@@ -50,11 +49,14 @@ function ScoreSystem(eachStudent, awnser){
 } 
 
 class StudentTakeTest extends React.Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = {
       students : arrayDictStudents,
-      userArr: []
+      userArr: [],
+
     }
   }
 
@@ -76,6 +78,7 @@ class StudentTakeTest extends React.Component {
     const userArr = [];
     querySnapshot.forEach((res) => {
       const {ans, choice1, choice2, choice3, choice4, question} = res.data();
+      const { chat, name } = res.data();
       userArr.push({
         key: res.id,
         res,
@@ -84,13 +87,35 @@ class StudentTakeTest extends React.Component {
         choice2,
         choice3,
         choice4,
-        question
+        question,
+        chat,
+        name,
       })
     })
     this.setState({
       userArr
     })
   }
+
+  storeUser() { 
+    this.usersCollectionRef.add({
+            chat: this.state.chat,
+            name: this.context.user.email,
+            score: outPutScore,
+            timestamp: firestore.FieldValue.serverTimestamp()
+          }).then((res) => {
+              this.setState({
+                chat: '',
+                name: ''
+              })
+          })
+          .catch((err) => {
+              console.log('Error found: ', err);
+              this.setState({
+                  isLoading: false
+              })
+          })
+      }
 
   render() {
     if (arrayDictStudents.length != 0){
@@ -99,7 +124,8 @@ class StudentTakeTest extends React.Component {
     const {text} = this.props.route.params
     console.log({text}.text)
     this.fireStoreData = firestore().collection("subject_Math").doc({text}.text).collection('Exam');
-    
+    this.usersCollectionRef = firestore().collection("subject_Math").doc({text}.text).collection('score');
+
     {
       this.state.userArr.map((item, i) => {
         arrayDictStudents.push({
@@ -156,11 +182,12 @@ class StudentTakeTest extends React.Component {
           
         ))}
       
-      <TouchableOpacity style={styles.button_sub} onPress={()=>{FinishTest()}}>
+      <TouchableOpacity style={styles.button_sub} onPress={() => { {FinishTest()}; {this.storeUser() } }} >
             <Text style={styles.text_sub}>
               Summit
             </Text>
       </TouchableOpacity>
+
       </View>
       
     </ScrollView>

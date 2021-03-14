@@ -58,7 +58,6 @@ class exam extends Component {
                 <StudentChooseButton
                   title={item.name}
                   onPress={() => {
-                    this.props.navigation.navigate(item.name);
                     this.props.navigation.navigate('EngExam', {text: item.name});
                   }}
                 />

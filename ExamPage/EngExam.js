@@ -23,7 +23,6 @@ function FinishTest(){
   console.log(outPutScore);
   alert("Your Score : " + outPutScore);
   score = [];
-  outPutScore = 0;
   tempQuestion = [];
 }
 
@@ -33,7 +32,7 @@ function ScoreSystem(eachStudent, awnser){
   if (!(tempQuestion.includes(eachStudent["question"]))){
     tempQuestion.push(eachStudent["question"]);
     score.push("None");
-
+ 
     if (awnser == eachStudent["ans"]) {
       score.splice(tempQuestion.indexOf(eachStudent["question"]), 1, 'Correct');
     } else {
@@ -47,14 +46,17 @@ function ScoreSystem(eachStudent, awnser){
     }
   }
   console.log(score);
-}
+} 
 
 class StudentTakeTest extends React.Component {
+  static contextType = AuthContext;
+
   constructor(props) {
     super(props);
     this.state = {
       students : arrayDictStudents,
-      userArr: []
+      userArr: [],
+
     }
   }
 
@@ -76,6 +78,7 @@ class StudentTakeTest extends React.Component {
     const userArr = [];
     querySnapshot.forEach((res) => {
       const {ans, choice1, choice2, choice3, choice4, question} = res.data();
+      const { chat, name } = res.data();
       userArr.push({
         key: res.id,
         res,
@@ -84,13 +87,35 @@ class StudentTakeTest extends React.Component {
         choice2,
         choice3,
         choice4,
-        question
+        question,
+        chat,
+        name,
       })
     })
     this.setState({
       userArr
     })
   }
+
+  storeUser() { 
+    this.usersCollectionRef.add({
+            chat: this.state.chat,
+            name: this.context.user.email,
+            score: outPutScore,
+            timestamp: firestore.FieldValue.serverTimestamp()
+          }).then((res) => {
+              this.setState({
+                chat: '',
+                name: ''
+              })
+          })
+          .catch((err) => {
+              console.log('Error found: ', err);
+              this.setState({
+                  isLoading: false
+              })
+          })
+      }
 
   render() {
     if (arrayDictStudents.length != 0){
@@ -99,7 +124,8 @@ class StudentTakeTest extends React.Component {
     const {text} = this.props.route.params
     console.log({text}.text)
     this.fireStoreData = firestore().collection("subject_Eng").doc({text}.text).collection('Exam');
-    
+    this.usersCollectionRef = firestore().collection("subject_Eng").doc({text}.text).collection('score');
+
     {
       this.state.userArr.map((item, i) => {
         arrayDictStudents.push({
@@ -113,7 +139,7 @@ class StudentTakeTest extends React.Component {
             )
 
       })
-      console.log(arrayDictStudents);
+      // console.log(arrayDictStudents);
     }
 
     return (
@@ -155,13 +181,14 @@ class StudentTakeTest extends React.Component {
           </>
           
         ))}
-
-      <TouchableOpacity style={styles.button_sub} onPress={()=>{FinishTest()}}>
+      
+      <TouchableOpacity style={styles.button_sub} onPress={() => { {FinishTest()}; {this.storeUser() } }} >
             <Text style={styles.text_sub}>
               Summit
             </Text>
       </TouchableOpacity>
       </View>
+      
     </ScrollView>
     );
   }
@@ -169,50 +196,55 @@ class StudentTakeTest extends React.Component {
 
 
 const styles = StyleSheet.create({
-    title: {
-      marginBottom: 20,
-      textAlign: 'center',
-    },
-    input: {
-      marginVertical: 10,
-      marginBottom: 15,
-    },
-    loginButton: {
-      marginVertical: 32,
-    },
-  
-    container: {
-      flex: 1,
-      backgroundColor: '#E2FCFA',
-      justifyContent: 'center',
-      paddingBottom:200,
-  
-    },
+  title: {
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    marginVertical: 10,
+    marginBottom: 15,
+  },
+  loginButton: {
+    marginVertical: 32,
+  },
 
-    button_sub: {
-      
-      alignItems: "center",
-      backgroundColor: "#0E6655",
-      padding: 20,
-    },
-    text_head:{
-      fontWeight: 'bold',
-      padding: 20,
-      fontSize: 25,
-      textAlign: 'center',
-      backgroundColor: '#00CABA',
-      
-    },
-    text_choice:{
-      fontSize: 20,
-      paddingHorizontal: 20,
-    },
-    text_sub:{
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#FFF',
+  text:{
+    fontWeight: 'bold',
+    padding: 20,
+    fontSize: 25,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#E2FCFA',
+    justifyContent: 'center',
+    paddingBottom:200,
 
-    }
+  },
+
+  button_sub: {
+    
+    alignItems: "center",
+    backgroundColor: "#0E6655",
+    padding: 20,
+  },
+  text_head:{
+    fontWeight: 'bold',
+    padding: 20,
+    fontSize: 25,
+    textAlign: 'center',
+    backgroundColor: '#00CABA',
+    
+  },
+  text_choice:{
+    fontSize: 20,
+    paddingHorizontal: 20,
+  },
+  text_sub:{
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFF',
+
+  }
   });
 
 

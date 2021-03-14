@@ -191,7 +191,7 @@ const stylesTest = StyleSheet.create({
 
     massage: {
         width: 395,
-        height: 673,
+        height: 600,
     },
 
     namechat: {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Alert } from 'react-native';
+import {View, StyleSheet, Text, Alert} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -14,8 +14,8 @@ class exam extends Component {
     constructor() {
         super();
 
-        this.fireStoreData = firestore().collection('subject_SoftWare').doc('Name').collection('Name')
-        this.state = {
+        this.fireStoreData = firestore().collection('subject_Math').doc('Name').collection('Name')
+    this.state = {
       userArr: [],
       buttonName: ''
     };
@@ -59,7 +59,7 @@ class exam extends Component {
                 <StudentChooseButton
                   title={item.name}
                   onPress={() => {
-                    this.props.navigation.navigate('SoftwareExam', {text: item.name});
+                    this.props.navigation.navigate('scoreMath', {text: item.name});
                   }}
                 />
 
@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
       marginBottom: 100
   
     },
-
     bg: {
       backgroundColor: '#E2FCFA'
     }
