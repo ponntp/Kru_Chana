@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext, Component} from 'react'
-import {View, StyleSheet, Text, Alert, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, Alert, TouchableOpacity,Image} from 'react-native';
 import {FilledButton} from '../components/FilledButton';
 import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
@@ -44,8 +44,10 @@ class test extends React.Component {
     return (
         <ScrollView>
           <View style={styles.container}>
+          <Image source={require('F:/Work/SF320/teacherWin3/book.png')}
+                  style={styles.Image} />
             <Input
-                placeholder="Text"
+                placeholder="Exam"
                 leftIcon={{ type: 'font-awesome', name: 'book' }}
                 onChangeText = {(val) => this.inputValueUpdate(val, 'name')}
                 style={styles}
@@ -72,6 +74,11 @@ const styles = StyleSheet.create({
     title: {
       marginBottom: 20,
       textAlign: 'center',
+    },
+    Image: {
+      paddingVertical:10,
+      width: 400,
+      height: 200,
     },
     input: {
       marginVertical: 10,
@@ -100,8 +107,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#E2FCFA',
       alignItems: 'center',
-      paddingHorizontal: 20,
-      paddingVertical:262.2,
+      paddingVertical:160,
     }
 });
 
