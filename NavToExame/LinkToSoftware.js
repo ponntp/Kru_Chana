@@ -6,7 +6,7 @@ import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem, Button } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
-
+console.disableYellowBox = true;
 
 class test extends React.Component {
   constructor(props) {
