@@ -58,6 +58,7 @@ class StudentTakeTest extends React.Component {
       userArr: [],
 
     }
+    this.onPressButton = this.onPressButton.bind(this);
   }
 
   onSelect(index, value, eachStudent){
@@ -182,7 +183,7 @@ class StudentTakeTest extends React.Component {
           
         ))}
       
-      <TouchableOpacity style={styles.button_sub} onPress={() => { {FinishTest()}; {this.storeUser() } }} >
+      <TouchableOpacity style={styles.button_sub} onPress={this.onPressButton} >
             <Text style={styles.text_sub}>
               Summit
             </Text>
@@ -191,6 +192,11 @@ class StudentTakeTest extends React.Component {
       
     </ScrollView>
     );
+  }
+  onPressButton() {
+    const {navigate} = this.props.navigation;
+    FinishTest();
+    navigate('Home Student');
   }
 }
 

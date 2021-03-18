@@ -22,6 +22,7 @@ class addData extends Component {
       choice4:"",
       ans: ""
     }
+    this.onPressButton = this.onPressButton.bind(this);
     
 
 }
@@ -120,10 +121,20 @@ class addData extends Component {
                 ADD QUESTION
               </Text>
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.loginButton} onPress={this.onPressButton}>
+              <Text style={styles.loginButtonText}>
+                Finish
+              </Text>
+            </TouchableOpacity>
                
            </View>
            </ScrollView>
       )
+    }
+    onPressButton() {
+      const {navigate} = this.props.navigation;
+      navigate('HomeTeacher');
     }
 
   }
