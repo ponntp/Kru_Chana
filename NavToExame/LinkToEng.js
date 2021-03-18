@@ -44,8 +44,8 @@ class test extends React.Component {
     return (
         <ScrollView>
           <View style={styles.container}>
-          <Image source={require('F:/Work/SF320/teacherWin3/book.png')}
-                  style={styles.Image} />
+          <Image source={{uri: 'https://scontent.fbkk22-2.fna.fbcdn.net/v/t1.15752-9/159507400_729443624400246_7029435786394560599_n.png?_nc_cat=105&ccb=1-3&_nc_sid=ae9488&_nc_ohc=3YIkW4WAzsQAX9DOEdg&_nc_ht=scontent.fbkk22-2.fna&oh=9c22def395af07d95402334079955af6&oe=60772E84'}}
+          style={styles.Image} />
             <Input
                 placeholder="Exam"
                 leftIcon={{ type: 'font-awesome', name: 'book' }}
