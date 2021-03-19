@@ -71,7 +71,7 @@ export default function checkRoleScreen() {
   const [Email, setEmail] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  
     const fetchData = async () => {
       try {
         await firestore()
@@ -99,7 +99,7 @@ export default function checkRoleScreen() {
     };
 
     fetchData();
-  }, []);
+  
 
   loopdata(user);
 
