@@ -197,6 +197,7 @@ class StudentTakeTest extends React.Component {
   onPressButton() {
     const {navigate} = this.props.navigation;
     FinishTest();
+    this.storeUser();
     navigate('Home Student');
   }
 }
