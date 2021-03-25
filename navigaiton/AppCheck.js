@@ -2,7 +2,7 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useContext, useState, useEffect} from 'react';
 import {AuthContext} from '../navigaiton/AuthProvider';
-import firestore from '@react-native-firebase/firestore'; 
+import firestore from '@react-native-firebase/firestore';
 
 import HomeTeacher from '../screens/homeScreenTeacher';
 import MakeQuestion from '../screens/makeQuestionScreen';
@@ -10,6 +10,7 @@ import HomeStudent from '../screens/homeScreenStudent';
 import MakeSubject from '../screens/makeSubjectScreen';
 import studentScore from '../screens/studentScore';
 import NameExame from '../screens/nameExam';
+import ExamTest from '../screens/examTest';
 import Subject from '../screens/nameSubject';
 
 
@@ -18,7 +19,6 @@ import subject_Eng from '../SubjectStudentChoose/Eng';
 import subject_Science from '../SubjectStudentChoose/Science';
 import subject_SoftWare from '../SubjectStudentChoose/SoftwareProcess'
 
-import MathExam from '../ExamPage/MathExam';
 import CodeExam from '../ExamPage/CodeExam';
 import EngExam from '../ExamPage/EngExam';
 import ScienceExam from '../ExamPage/ScienceExam';
@@ -39,8 +39,6 @@ import Software from '../Subject/SoftwareProcess'
 
 import ChatTeacher from '../screens/chatTeacher'
 import ChatStudent from '../screens/chatStudent'
-import ChatMath from '../examChat/mathChat'
-import ChatEnglish from '../examChat/englishChat'
 
 import toScoreEng from '../scoreSubject/eng';
 import toScoreMath from '../scoreSubject/math';
@@ -151,21 +149,19 @@ export default function checkRoleScreen() {
         <Stack.Screen name="Home Student" component={HomeStudent}/>
         <Stack.Screen name="Name Subject" component={Subject} />
         <Stack.Screen name="Name Exame" component={NameExame} />
+        <Stack.Screen name="ExamTest" component={ExamTest} />
 
         <Stack.Screen name="subject_Code" component={subject_Code}/>
         <Stack.Screen name="subject_Eng" component={subject_Eng}/>
         <Stack.Screen name="subject_Science" component={subject_Science}/>
         <Stack.Screen name="subject_SoftWare" component={subject_SoftWare}/>
 
-        <Stack.Screen name="MathExam" component={MathExam} />
         <Stack.Screen name="CodeExam" component={CodeExam}/>
         <Stack.Screen name="EngExam" component={EngExam}/>
         <Stack.Screen name="ScienceExam" component={ScienceExam}/>
         <Stack.Screen name="SoftwareExam" component={SoftwareExam}/>
 
         <Stack.Screen name="Chat Student" component={ChatStudent}/>
-        <Stack.Screen name="Chat Math" component={ChatMath}/>
-        <Stack.Screen name="Chat English" component={ChatEnglish}/>
 
       </Stack.Navigator>
     </>
