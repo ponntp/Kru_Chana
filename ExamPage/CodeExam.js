@@ -148,6 +148,9 @@ class StudentTakeTest extends React.Component {
     return (
       <ScrollView>
       <View style={styles.container}>
+
+
+      {/*Timer*/} 
       <CountDown
         size={30}
         until={5}
