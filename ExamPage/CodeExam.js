@@ -6,6 +6,7 @@ import { AuthContext } from '../navigaiton/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import { Input, ListItem } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
+import CountDown from 'react-native-countdown-component';
 
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 
@@ -59,6 +60,7 @@ class StudentTakeTest extends React.Component {
 
     }
     this.onPressButton = this.onPressButton.bind(this);
+    this.onPressButton2 = this.onPressButton2.bind(this);
   }
 
   onSelect(index, value, eachStudent){
@@ -146,6 +148,19 @@ class StudentTakeTest extends React.Component {
     return (
       <ScrollView>
       <View style={styles.container}>
+      <CountDown
+        size={30}
+        until={5}
+        onFinish={this.onPressButton2}
+        digitStyle={{backgroundColor: '#FFF', borderWidth: 2, borderColor: '#1CC625'}}
+        digitTxtStyle={{color: '#1CC625'}}
+        timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
+        separatorStyle={{color: '#1CC625'}}
+        timeToShow={['H', 'M', 'S']}
+        timeLabels={{m: null, s: null}}
+        showSeparator
+      />
+      </View>   
         {this.state.students.map(eachStudent => (
             <>
           <Text style={styles.text_head}>
@@ -182,6 +197,8 @@ class StudentTakeTest extends React.Component {
           </>
           
         ))}
+
+     
       
       <TouchableOpacity style={styles.button_sub} onPress={this.onPressButton} >
             <Text style={styles.text_sub}>
@@ -189,12 +206,19 @@ class StudentTakeTest extends React.Component {
             </Text>
       </TouchableOpacity>
 
-      </View>
+
       
     </ScrollView>
     );
   }
   onPressButton() {
+    const {navigate} = this.props.navigation;
+    FinishTest();
+    this.storeUser();
+    navigate('Home Student');
+  }
+
+  onPressButton2() {
     const {navigate} = this.props.navigation;
     FinishTest();
     this.storeUser();
