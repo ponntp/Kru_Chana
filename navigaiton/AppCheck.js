@@ -2,7 +2,7 @@ import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useContext, useState, useEffect} from 'react';
 import {AuthContext} from '../navigaiton/AuthProvider';
-import firestore from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore'; 
 
 import HomeTeacher from '../screens/homeScreenTeacher';
 import MakeQuestion from '../screens/makeQuestionScreen';
