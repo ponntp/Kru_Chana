@@ -168,34 +168,37 @@ class StudentTakeTest extends React.Component {
             {eachStudent.question}
           </Text> 
 
-          <RadioGroup 
-          size={40}
-          thickness={4}
-          color='#00CABA'
-          highlightColor='#97FFDA'
-          onSelect = {(index, value) => this.onSelect(index, value, eachStudent)}
-          >
+              <RadioGroup 
+              size={40}
+              thickness={4}
+              color='#00CABA'
+              highlightColor='#97FFDA'
+              onSelect = {(index, value) => this.onSelect(index, value, eachStudent)}
+              >
 
-              <RadioButton value={1}>
-                  <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
-              </RadioButton>
-              <RadioButton value={2}>
-                  <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
-              </RadioButton>
-              <RadioButton value={3}>
-                  <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
-              </RadioButton>
-              <RadioButton value={4}>
-                  <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
-              </RadioButton>
-          </RadioGroup>
+                  <RadioButton value={1}>
+                      <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
+                  </RadioButton>
+                  <RadioButton value={2}>
+                      <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
+                  </RadioButton>
+                  <RadioButton value={3}>
+                      <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
+                  </RadioButton>
+                  <RadioButton value={4}>
+                      <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
+                  </RadioButton>
+              </RadioGroup>
 
-          <Text>
-            {"\n"}
-          </Text>
+              <Text>
+                {"\n"}
+              </Text>
 
-          </>
+              </>
+              
+            ))}
           
+<<<<<<< HEAD
         ))}
 
      
@@ -209,6 +212,18 @@ class StudentTakeTest extends React.Component {
 
       
     </ScrollView>
+=======
+          <TouchableOpacity style={styles.button_sub} onPress={this.onPressButton} >
+                <Text style={styles.text_sub}>
+                  Summit
+                </Text>
+          </TouchableOpacity>
+
+          </View>
+          
+        </ScrollView>
+      </View>
+>>>>>>> f679605d4ae6249227a29969ac1d12db8bbc97c8
     );
   }
   onPressButton() {
