@@ -11,7 +11,7 @@ import { AuthContext } from '../navigaiton/AuthProvider';
 
 class exam extends Component {
 
-    constructor() {
+    constructor() { 
         super();
 
         this.fireStoreData = firestore().collection('subject_Math').doc('Name').collection('Name')
@@ -59,7 +59,7 @@ class exam extends Component {
                 <StudentChooseButton
                   title={item.name}
                   onPress={() => {
-                    this.props.navigation.navigate('ExamTest', {text: item.name});
+                    this.props.navigation.navigate('MathExam', {text: item.name});
                   }}
                 />
 

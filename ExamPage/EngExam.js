@@ -144,53 +144,63 @@ class StudentTakeTest extends React.Component {
     }
 
     return (
-      <ScrollView>
-      <View style={styles.container}>
-        {this.state.students.map(eachStudent => (
-            <>
-          <Text style={styles.text_head}>
-            {console.log(eachStudent)                   /*console log this*/} 
-            {eachStudent.question}
-          </Text> 
+      <View>
+        <View>
+          <Button
+            title="chat"
+            onPress={() => {
+              this.props.navigation.navigate('Chat Math', {text: {text}.text});
+            }}
+          />
+        </View>
+        <ScrollView>
+          <View style={styles.container}>
+            {this.state.students.map(eachStudent => (
+                <>
+              <Text style={styles.text_head}>
+                {console.log(eachStudent)                   /*console log this*/} 
+                {eachStudent.question}
+              </Text> 
 
-          <RadioGroup 
-          size={40}
-          thickness={4}
-          color='#00CABA'
-          highlightColor='#97FFDA'
-          onSelect = {(index, value) => this.onSelect(index, value, eachStudent)}
-          >
+              <RadioGroup 
+              size={40}
+              thickness={4}
+              color='#00CABA'
+              highlightColor='#97FFDA'
+              onSelect = {(index, value) => this.onSelect(index, value, eachStudent)}
+              >
 
-              <RadioButton value={1}>
-                  <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
-              </RadioButton>
-              <RadioButton value={2}>
-                  <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
-              </RadioButton>
-              <RadioButton value={3}>
-                  <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
-              </RadioButton>
-              <RadioButton value={4}>
-                  <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
-              </RadioButton>
-          </RadioGroup>
+                  <RadioButton value={1}>
+                      <Text style={styles.text_choice}>{eachStudent.choice1}</Text>
+                  </RadioButton>
+                  <RadioButton value={2}>
+                      <Text style={styles.text_choice}>{eachStudent.choice2}</Text>
+                  </RadioButton>
+                  <RadioButton value={3}>
+                      <Text style={styles.text_choice}>{eachStudent.choice3}</Text>
+                  </RadioButton>
+                  <RadioButton value={4}>
+                      <Text style={styles.text_choice}>{eachStudent.choice4}</Text>
+                  </RadioButton>
+              </RadioGroup>
 
-          <Text>
-            {"\n"}
-          </Text>
+              <Text>
+                {"\n"}
+              </Text>
 
-          </>
+              </>
+              
+            ))}
           
-        ))}
-      
-      <TouchableOpacity style={styles.button_sub} onPress={this.onPressButton} >
-            <Text style={styles.text_sub}>
-              Summit
-            </Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.button_sub} onPress={this.onPressButton} >
+                <Text style={styles.text_sub}>
+                  Summit
+                </Text>
+          </TouchableOpacity>
+          </View>
+          
+        </ScrollView>
       </View>
-      
-    </ScrollView>
     );
   }
   onPressButton() {
